@@ -1,0 +1,20 @@
+.trapezoid {
+    position: fixed;
+    height: 60px;
+    border-left: 20px solid #fff;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    cursor: pointer;
+    transition: border-left 0.3s ease-in-out;
+}
+
+.trapezoid:hover {
+    border-left: 20px solid  #d6e4ff;
+}
+
+.trapezoid span {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: 4px;
+}

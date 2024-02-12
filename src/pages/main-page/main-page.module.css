@@ -1,0 +1,19 @@
+@import 'antd/dist/antd.less';
+
+.mainContainer {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.backgroundImageContainer {
+    background: no-repeat right url('src/assets/image/main-page-light.png');
+}
+
+@media (max-width: 480px) {
+    .backgroundImageContainer {
+        background: no-repeat center/cover url('src/assets/image/main-page-light.png');
+    }
+}
+
+
+

@@ -1,0 +1,28 @@
+.header {
+    padding: 10px 20px 28px;
+}
+
+.text {
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 834px) {
+    .text {
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+@media (max-width: 768px) {
+    .text {
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+@media (max-width: 480px) {
+    .header {
+        padding-bottom: 10px;
+    }
+}
