@@ -28,6 +28,7 @@ export const MainContent = () => {
                 <br /> — выполнять расписанные тренировки для разных частей тела, следуя подробным
                 инструкциям и советам профессиональных тренеров.
             </Typography.Paragraph>
+
             <Typography.Paragraph
                 className={styles.description}
                 style={{

@@ -6,7 +6,7 @@
 }
 
 .backgroundImageContainer {
-    background: no-repeat right url('src/assets/image/main-page-light.png');
+    background: center / cover, lightgray 50% / cover url('src/assets/image/main-page-light.png');
 }
 
 @media (max-width: 480px) {

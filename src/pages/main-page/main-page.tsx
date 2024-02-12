@@ -5,8 +5,8 @@ import { MainContent } from '@components/content';
 import { Header } from '@components/header';
 import { SidebarMobile, SidebarDesktop } from '@components/sidebar';
 import { Footer } from '@components/footer';
-import { TrapezoidButton } from '@components/trapezoid-button';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { TrapezoidButton } from '@components/trapezoid-button';
 
 export const MainPage = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -28,11 +28,13 @@ export const MainPage = () => {
             <Layout>
                 <Header />
                 <div className={styles.backgroundImageContainer}>
-                    {!xs && (
-                        <TrapezoidButton collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
-                    )}
-
                     <Layout.Content>
+                        {!xs && (
+                            <TrapezoidButton
+                                collapsed={collapsed}
+                                toggleCollapsed={toggleCollapsed}
+                            />
+                        )}
                         <MainContent />
                     </Layout.Content>
 
