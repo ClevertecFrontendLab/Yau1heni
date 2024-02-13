@@ -6,6 +6,6 @@ export type PropsSidebarDesktop = {
     isCollapsed: boolean;
 };
 export type PropsSidebarMobile = {
-    setCollapsed: (collapsed: boolean) => void;
+    toggleCollapsed: () => void;
     collapsed: boolean;
 };

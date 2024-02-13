@@ -8,12 +8,3 @@
 .backgroundImageContainer {
     background: center / cover, lightgray 50% / cover url('src/assets/image/main-page-light.png');
 }
-
-@media (max-width: 480px) {
-    .backgroundImageContainer {
-        background: no-repeat center/cover url('src/assets/image/main-page-light.png');
-    }
-}
-
-
-

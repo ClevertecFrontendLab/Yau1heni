@@ -14,7 +14,7 @@ export const Footer = () => {
         <Row
             justify={{
                 ['md']: 'space-between',
-                ['xs']: 'center',
+                ['sm']: 'center',
             }}
         >
             <Col

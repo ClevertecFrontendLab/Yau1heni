@@ -20,19 +20,21 @@ export const MainPage = () => {
     return (
         <Layout className={styles.mainContainer}>
             {xs ? (
-                <SidebarMobile collapsed={collapsed} setCollapsed={setCollapsed} />
+                <SidebarMobile collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
             ) : (
                 <SidebarDesktop isCollapsed={collapsed} />
             )}
 
             <Layout>
                 <Header />
+
                 <div className={styles.backgroundImageContainer}>
                     <Layout.Content>
                         {!xs && (
                             <TrapezoidButton
                                 collapsed={collapsed}
                                 toggleCollapsed={toggleCollapsed}
+                                dataTestId={'sider-switch'}
                             />
                         )}
                         <MainContent />

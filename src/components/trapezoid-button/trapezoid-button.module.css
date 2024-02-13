@@ -1,16 +1,17 @@
 .trapezoid {
-    bottom: 350px;
-    position: fixed;
+    top: 500px;
+    position: absolute;
     height: 60px;
-    border-left: 20px solid #fff;
+    border-left: 30px solid #fff;
     border-bottom: 10px solid transparent;
     border-top: 10px solid transparent;
     cursor: pointer;
     transition: border-left 0.3s ease-in-out;
+    z-index: 20;
 }
 
 .trapezoid:hover {
-    border-left: 20px solid  #d6e4ff;
+    border-left: 20px solid #d6e4ff;
 }
 
 .trapezoid span {
@@ -22,6 +23,15 @@
 
 @media (max-width: 1024px) {
     .trapezoid {
-        bottom: 180px;
+        top: 550px;
     }
 }
+
+@media (max-width: 576px) {
+    .trapezoid {
+        top: 20px;
+        transition: left 0.2s ease-in-out;
+    }
+}
+
+

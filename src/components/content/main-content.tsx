@@ -5,7 +5,7 @@ import { itemsCards } from '@components/content/card-item/data/items.tsx';
 
 export const MainContent = () => {
     const cardsList = itemsCards.map((card) => (
-        <Col key={card.id} md={8} xs={24}>
+        <Col key={card.id} md={8} sm={24} xs={24}>
             <CardItem Icon={card.icon} title={card.title} text={card.text} />
         </Col>
     ));
