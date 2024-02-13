@@ -1,0 +1,39 @@
+.mainContentContainer {
+    max-width: 752px;
+    margin: 24px 24px 150px;
+}
+
+.textTarget {
+    color: #061178;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 24px;
+    line-height: 130%;
+    letter-spacing: 0.5px;
+
+}
+
+.description {
+    color: red;
+    background-color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 130%;
+    padding: 24px;
+    letter-spacing: 0.6px;
+}
+
+@media (max-width: 1024px) {
+    .mainContentContainer {
+        margin-bottom: 225px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainContentContainer {
+        margin: 24px 12px 30px;
+
+    }
+}
+
