@@ -7,7 +7,7 @@ import { FC } from 'react';
 import { itemsSideBar } from '../data/items.tsx';
 import { PropsSidebarDesktop } from '../types/types.ts';
 
-export const SidebarDesktop: FC<PropsSidebarDesktop> = ({ isCollapsed }) => (
+export const SidebarDesktop: FC<PropsSidebarDesktop> = ({ isCollapsed, logout }) => (
     <Layout.Sider
         width={208}
         collapsedWidth={64}
@@ -29,6 +29,7 @@ export const SidebarDesktop: FC<PropsSidebarDesktop> = ({ isCollapsed }) => (
                 left: 0,
             }}
             type='text'
+            onClick={logout}
             icon={<Exit style={{ marginRight: '24px' }} />}
         >
             {isCollapsed ? null : 'Выход'}

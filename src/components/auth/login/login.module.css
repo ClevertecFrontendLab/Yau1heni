@@ -1,0 +1,17 @@
+.remember {
+    margin-top: 54px;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    margin-top: 24px;
+}
+
+:global .ant-input, :global .ant-input-group {
+    border-radius: 2px;
+    padding: 5px 12px;
+    height: 40px;
+}

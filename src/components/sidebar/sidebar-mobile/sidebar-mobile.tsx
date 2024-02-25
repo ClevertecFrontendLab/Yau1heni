@@ -6,7 +6,7 @@ import { FC } from 'react';
 import { PropsSidebarMobile } from '@components/sidebar/types/types.ts';
 import { TrapezoidButton } from '@components/trapezoid-button';
 
-export const SidebarMobile: FC<PropsSidebarMobile> = ({ toggleCollapsed, collapsed }) => (
+export const SidebarMobile: FC<PropsSidebarMobile> = ({ toggleCollapsed, collapsed, logout }) => (
     <div>
         <Layout.Sider
             collapsedWidth={0}
@@ -45,6 +45,7 @@ export const SidebarMobile: FC<PropsSidebarMobile> = ({ toggleCollapsed, collaps
                         left: '0',
                     }}
                     type='text'
+                    onClick={logout}
                 >
                     Выход
                 </Button>

@@ -1,0 +1,49 @@
+.auth {
+    border-radius: 2px;
+    padding: 64px 32px;
+    width: 539px;
+    height: 742px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    margin-bottom: 48px;
+    height: 76px;
+    width: 309px;
+}
+
+:global .ant-tabs > .ant-tabs-nav {
+    margin-bottom: 24px;
+}
+
+:global .ant-tabs-tab {
+    width: 184px;
+}
+
+:global .ant-tabs-large > .ant-tabs-nav .ant-tabs-tab {
+    margin: 0;
+}
+
+:global .ant-tabs-tab-btn {
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .auth {
+        width: 328px;
+        height: 612px;
+        padding: 32px 16px;
+    }
+    .logo {
+        margin-bottom: 32px;
+        height: 50px;
+        width: 203px;
+     }
+    :global .ant-tabs-tab {
+        width: 148px;
+    }
+}

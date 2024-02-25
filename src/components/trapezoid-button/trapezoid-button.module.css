@@ -6,12 +6,11 @@
     border-bottom: 10px solid transparent;
     border-top: 10px solid transparent;
     cursor: pointer;
-    transition: border-left 0.3s ease-in-out;
     z-index: 20;
 }
 
 .trapezoid:hover {
-    border-left: 20px solid #d6e4ff;
+    border-left: 30px solid #d6e4ff;
 }
 
 .trapezoid span {

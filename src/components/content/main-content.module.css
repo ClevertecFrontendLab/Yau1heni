@@ -11,17 +11,17 @@
     padding: 24px;
     line-height: 130%;
     letter-spacing: 0.5px;
-
+    margin-bottom: 24px;
 }
 
 .description {
-    color: red;
     background-color: #fff;
     font-size: 20px;
     font-weight: 500;
     line-height: 130%;
     padding: 24px;
     letter-spacing: 0.6px;
+    margin-bottom: 16px;
 }
 
 @media (max-width: 1024px) {

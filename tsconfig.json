@@ -20,15 +20,16 @@
         "types": ["vite-plugin-svgr/client"],
         "paths": {
             "@public/*": ["./public/*"],
+            "@app/*": ["./src/app/*"],
             "@components/*": ["./src/components/*"],
             "@constants/*": ["./src/constants/*"],
             "@hooks/*": ["./src/hooks/*"],
             "@pages/*": ["./src/pages/*"],
             "@redux/*": ["./src/redux/*"],
-            "@types/*": ["./src/types/*"],
+            "@customTypes/*": ["./src/customTypes/*"],
             "@utils/*": ["./src/utils/*"],
-            "@assets/*": ["./src/assets/*"]
-
+            "@assets/*": ["./src/assets/*"],
+            "@services/*": ["./src/services/*"],
         },
         "plugins": [
             {
