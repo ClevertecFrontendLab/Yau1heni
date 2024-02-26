@@ -1,17 +1,19 @@
 .remember {
-    margin-top: 54px;
+    margin-top: var(--gap-4xl);
 }
 
 .buttonsContainer {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--gap-m);
     width: 100%;
-    margin-top: 24px;
+    margin-top: var(--gap-xl);
 }
 
 @media (max-width: 768px) {
     .buttonsContainer {
-        margin-top: 8px;
+        margin-top: var(--gap-xs);
     }
 }
+
+

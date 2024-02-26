@@ -1,6 +1,6 @@
 .auth {
-    border-radius: 2px;
-    padding: 64px 32px;
+    border-radius: var(--border-radius-xs);
+    padding: var(--padding-inverted-l);
     width: 539px;
     height: 742px;
     background-color: var(--neutral-gray-1);
@@ -10,13 +10,13 @@
 }
 
 .logo {
-    margin-bottom: 48px;
+    margin-bottom: var(--gap-3xl);
     height: 76px;
     width: 309px;
 }
 
 :global .ant-tabs > .ant-tabs-nav {
-    margin-bottom: 24px;
+    margin-bottom: var(--gap-xl);
 }
 
 :global .ant-tabs-tab {
@@ -36,10 +36,10 @@
     .auth {
         width: 328px;
         height: 612px;
-        padding: 32px 16px;
+        padding: var(--padding-inverted-s);
     }
     .logo {
-        margin-bottom: 24px;
+        margin-bottom: var(--gap-xl);
         height: 50px;
         width: 203px;
      }

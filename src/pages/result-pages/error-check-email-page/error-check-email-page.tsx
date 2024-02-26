@@ -2,7 +2,7 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { AuthContainer } from '@components/auth';
 import { Button, Result } from 'antd';
 import { retryCheckEmail } from '@redux/slices';
-import styles from '@pages/result-pages/result-pages.module.css';
+import styles from '../result-pages.module.css';
 
 export const ErrorCheckEmailPage = () => {
     const dispatch = useAppDispatch();

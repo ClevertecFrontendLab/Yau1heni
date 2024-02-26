@@ -6,22 +6,22 @@
 .textTarget {
     color: var(--primary-light-9);
     background-color: var(--neutral-gray-1);
-    font-size: 16px;
-    font-weight: 400;
-    padding: 24px;
-    line-height: 130%;
-    letter-spacing: 0.5px;
-    margin-bottom: 24px;
+    font-size: var(--gap-m);
+    font-weight: var(--font-weight-l);
+    padding: var(--gap-xl);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing-s);
+    margin-bottom: var(--gap-xl);
 }
 
 .description {
     background-color: var(--neutral-gray-1);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 130%;
-    padding: 24px;
-    letter-spacing: 0.6px;
-    margin-bottom: 16px;
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-xl);
+    line-height: var(--line-height);
+    padding: var(--gap-xl);
+    letter-spacing: var(--letter-spacing-s);
+    margin-bottom: var(--gap-m);
 }
 
 @media (max-width: 1024px) {
@@ -33,7 +33,6 @@
 @media (max-width: 480px) {
     .mainContentContainer {
         margin: 24px 12px 30px;
-
     }
 }
 
