@@ -1,3 +1,1 @@
-import PrivateRoutes from '@components/private-routes/private-routes.tsx';
-
-export { PrivateRoutes };
+export { PrivateRoutes } from './private-routes.tsx';

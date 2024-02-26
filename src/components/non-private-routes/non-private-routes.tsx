@@ -10,7 +10,5 @@ export const NonAuthRoutes = () => {
 
     const isAuth = isAccessToken || isLoggedIn;
 
-    return !isAuth ? <Outlet /> : <Navigate to={Paths.MAIN} replace />;
+    return isAuth ? <Navigate to={Paths.MAIN} replace /> : <Outlet />;
 };
-
-export default NonAuthRoutes;

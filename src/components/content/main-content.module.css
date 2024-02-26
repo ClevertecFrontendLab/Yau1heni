@@ -4,8 +4,8 @@
 }
 
 .textTarget {
-    color: #061178;
-    background-color: #fff;
+    color: var(--primary-light-9);
+    background-color: var(--neutral-gray-1);
     font-size: 16px;
     font-weight: 400;
     padding: 24px;
@@ -15,7 +15,7 @@
 }
 
 .description {
-    background-color: #fff;
+    background-color: var(--neutral-gray-1);
     font-size: 20px;
     font-weight: 500;
     line-height: 130%;

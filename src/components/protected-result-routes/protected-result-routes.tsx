@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Paths } from '@customTypes/routes';
 
-const ProtectedResultRoutes = () => {
+export const ProtectedResultRoutes = () => {
     const location = useLocation();
 
     const isAvailable = () => {
@@ -16,5 +16,3 @@ const ProtectedResultRoutes = () => {
 
     return isAvailable() ? <Outlet /> : <Navigate to={Paths.AUTH} replace />;
 };
-
-export default ProtectedResultRoutes;

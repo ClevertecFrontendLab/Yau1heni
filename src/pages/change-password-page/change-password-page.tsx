@@ -34,6 +34,7 @@ export const ChangePasswordPage = () => {
                     >
                         <Input.Password
                             placeholder='Пароль'
+                            size={'large'}
                             iconRender={(visible) =>
                                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                             }
@@ -62,6 +63,7 @@ export const ChangePasswordPage = () => {
                     >
                         <Input.Password
                             placeholder='Повторите пароль'
+                            size={'large'}
                             iconRender={(visible) =>
                                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                             }

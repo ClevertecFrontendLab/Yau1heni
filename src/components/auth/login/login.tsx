@@ -9,6 +9,7 @@ import { AuthPayload } from '@customTypes/auth';
 import { authActions, checkEmail, login } from '@redux/slices';
 import { isRememberMeAuthSelector } from '@redux/selectors';
 import { VALIDATE_PASSWORD_SCHEMA, validationMessages } from '@constants/validation.ts';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 export const Login = () => {
     const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ export const Login = () => {
     const { pathname } = useLocation();
     const isRememberMe = useAppSelector(isRememberMeAuthSelector);
     const [form] = Form.useForm();
+    const { sm } = useBreakpoint();
 
     const onCheckEmailHandler = () => {
         if (form.getFieldValue('email')) {
@@ -55,7 +57,12 @@ export const Login = () => {
                     },
                 ]}
             >
-                <Input addonBefore={'e-mail: '} autoComplete='on' data-test-id='login-email' />
+                <Input
+                    addonBefore={'e-mail: '}
+                    size={'large'}
+                    autoComplete='on'
+                    data-test-id='login-email'
+                />
             </Form.Item>
             <Form.Item
                 name='password'
@@ -71,11 +78,12 @@ export const Login = () => {
                     placeholder='Пароль'
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     autoComplete='off'
+                    size={'large'}
                     data-test-id='login-password'
                 />
             </Form.Item>
 
-            <Row justify={'space-between'} align={'top'} className={styles.remember}>
+            <Row justify={'space-between'} className={styles.remember}>
                 <Form.Item name='remember' valuePropName='checked'>
                     <Checkbox
                         data-test-id='login-remember'
@@ -101,7 +109,7 @@ export const Login = () => {
                     <Button type='primary' htmlType='submit' data-test-id='login-submit-button'>
                         Войти
                     </Button>
-                    <Button icon={<GooglePlusOutlined />} type={'text'}>
+                    <Button icon={sm && <GooglePlusOutlined />} type={'text'}>
                         Войти через Google
                     </Button>
                 </div>

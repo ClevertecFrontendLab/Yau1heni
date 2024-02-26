@@ -6,10 +6,12 @@ import { useLocation } from 'react-router-dom';
 import { AuthPayload } from '@customTypes/auth';
 import { registration } from '@redux/slices';
 import { VALIDATE_PASSWORD_SCHEMA, validationMessages } from '@constants/validation.ts';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 export const Registration = () => {
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
+    const { sm } = useBreakpoint();
 
     const onFinishHandler = ({ email, password }: AuthPayload) => {
         dispatch(registration({ email, password, pathname }));
@@ -21,6 +23,7 @@ export const Registration = () => {
                 <Input
                     addonBefore={'e-mail: '}
                     autoComplete='on'
+                    size={'large'}
                     data-test-id='registration-email'
                 />
             </Form.Item>
@@ -37,6 +40,7 @@ export const Registration = () => {
             >
                 <Input.Password
                     placeholder='Пароль'
+                    size={'large'}
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     autoComplete='off'
                     data-test-id='registration-password'
@@ -65,6 +69,7 @@ export const Registration = () => {
             >
                 <Input.Password
                     placeholder='Повторите пароль'
+                    size={'large'}
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     autoComplete='off'
                     data-test-id='registration-confirm-password'
@@ -79,7 +84,7 @@ export const Registration = () => {
                     >
                         Войти
                     </Button>
-                    <Button type={'text'} icon={<GooglePlusOutlined />}>
+                    <Button type={'text'} icon={sm && <GooglePlusOutlined />}>
                         Регистрация через Google
                     </Button>
                 </div>

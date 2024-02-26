@@ -1,7 +1,7 @@
 .confirmEmailPage {
     width: 539px;
     padding: 64px 86px;
-    background: #fff;
+    background: var(--neutral-gray-1);
 }
 
 :global .ant-result-extra {
@@ -16,11 +16,11 @@
 }
 
 .characterError {
-    border: 1px solid red;
+    border: 1px solid var(--character-light-error);;
 }
 
 .characterInactive {
-    background: #fff;
+    background: var(--neutral-gray-1);
 }
 
 @media (max-width: 768px) {

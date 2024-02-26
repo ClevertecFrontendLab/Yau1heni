@@ -1,7 +1,7 @@
 .container {
     width: 539px;
     padding: 64px 86px;
-    background: #fff;
+    background: var(--neutral-gray-1);
 }
 
 :global .ant-result-title {
@@ -9,7 +9,7 @@
     font-size: 24px;
     line-height: 130%;
     text-align: center;
-    color: #262626;
+    color: var(--character-light-title-85);
 }
 
 @media (max-width: 768px) {

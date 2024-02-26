@@ -1,3 +1,1 @@
-import NonAuthRoutes from './non-private-routes.tsx';
-
-export { NonAuthRoutes };
+export { NonAuthRoutes } from './non-private-routes.tsx';

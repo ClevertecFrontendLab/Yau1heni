@@ -10,8 +10,8 @@
     margin-top: 24px;
 }
 
-:global .ant-input, :global .ant-input-group {
-    border-radius: 2px;
-    padding: 5px 12px;
-    height: 40px;
+@media (max-width: 768px) {
+    .buttonsContainer {
+        margin-top: 8px;
+    }
 }

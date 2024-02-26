@@ -3,7 +3,7 @@
     padding: 64px 32px;
     width: 539px;
     height: 742px;
-    background-color: #fff;
+    background-color: var(--neutral-gray-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,7 +39,7 @@
         padding: 32px 16px;
     }
     .logo {
-        margin-bottom: 32px;
+        margin-bottom: 24px;
         height: 50px;
         width: 203px;
      }

@@ -44,6 +44,8 @@ export type AuthInitialState = {
     isErrorConfirmEmail: boolean;
 };
 
-export type AuthData = (AuthPayload & { pathname: string }) | null;
-export type CheckEmail = (CheckEmailPayload & { pathname: string }) | null;
-export type ChangePasswordData = (ChangePasswordPayload & { pathname: string }) | null;
+type Nullable<T> = T | null;
+
+export type AuthData = Nullable<AuthPayload & { pathname: string }>;
+export type CheckEmail = Nullable<CheckEmailPayload & { pathname: string }>;
+export type ChangePasswordData = Nullable<ChangePasswordPayload & { pathname: string }>;
