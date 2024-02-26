@@ -2,16 +2,15 @@
     top: 500px;
     position: absolute;
     height: 60px;
-    border-left: 30px solid #fff;
+    border-left: 30px solid var(--neutral-gray-1);;
     border-bottom: 10px solid transparent;
     border-top: 10px solid transparent;
     cursor: pointer;
-    transition: border-left 0.3s ease-in-out;
     z-index: 20;
 }
 
 .trapezoid:hover {
-    border-left: 20px solid #d6e4ff;
+    border-left: 30px solid var(--primary-light-2);
 }
 
 .trapezoid span {

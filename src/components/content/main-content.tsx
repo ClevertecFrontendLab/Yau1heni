@@ -1,7 +1,7 @@
-import { CardItem } from '@components/content/card-item/card-item.tsx';
+import { CardItem } from './card-item/card-item.tsx';
 import { Col, Row, Typography } from 'antd';
 import styles from './main-content.module.css';
-import { itemsCards } from '@components/content/card-item/data/items.tsx';
+import { itemsCards } from './card-item/data/items.tsx';
 
 export const MainContent = () => {
     const cardsList = itemsCards.map((card) => (
@@ -12,13 +12,7 @@ export const MainContent = () => {
 
     return (
         <div className={styles.mainContentContainer}>
-            <Typography.Paragraph
-                type='secondary'
-                className={styles.textTarget}
-                style={{
-                    marginBottom: '24px',
-                }}
-            >
+            <Typography.Paragraph className={styles.textTarget}>
                 С CleverFit ты сможешь:
                 <br /> — планировать свои тренировки на календаре, выбирая тип и уровень нагрузки;
                 <br /> — отслеживать свои достижения в разделе статистики, сравнивая свои результаты
@@ -29,12 +23,7 @@ export const MainContent = () => {
                 инструкциям и советам профессиональных тренеров.
             </Typography.Paragraph>
 
-            <Typography.Paragraph
-                className={styles.description}
-                style={{
-                    marginBottom: '16px',
-                }}
-            >
+            <Typography.Paragraph className={styles.description}>
                 CleverFit — это не просто приложение, а твой личный помощник в мире фитнеса. Не
                 откладывай на завтра — начни тренироваться уже сегодня!
             </Typography.Paragraph>

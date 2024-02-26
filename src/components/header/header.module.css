@@ -3,26 +3,25 @@
 }
 
 .text {
-    font-size: 38px;
-    font-weight: 700;
-    line-height: 130%;
-    letter-spacing: 0.5px;
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-3xl);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing-s);
 }
 
 @media (max-width: 1024px) {
     .text {
-        font-size: 24px;
-        font-weight: 500;
+        font-size:var(--font-size-xl);
+        font-weight: var(--font-weight-xl);
     }
 }
 @media (max-width: 768px) {
     .text {
-        font-size: 20px;
-        font-weight: 500;
+        font-size: var(--font-size-l);
     }
 }
 @media (max-width: 480px) {
     .header {
-        padding-bottom: 10px;
+        padding-bottom: var(--gap-xs);
     }
 }

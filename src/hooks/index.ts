@@ -1,1 +1,1 @@
-export { useAppDispatch, useAppSelector } from './typed-react-redux-hooks';
+export { useAppDispatch, useAppSelector, createAppAsyncThunk } from './typed-react-redux-hooks';
