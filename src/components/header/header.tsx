@@ -8,11 +8,6 @@ export const Header = () => {
 
     return (
         <div className={styles.header}>
-            <Col span={24}>
-                <Button type='text' style={{ padding: 0 }}>
-                    Главная
-                </Button>
-            </Col>
             <Row justify='space-between'>
                 <Col span={19}>
                     <Typography.Text className={styles.text}>

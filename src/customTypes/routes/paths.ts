@@ -11,12 +11,13 @@ export enum Paths {
     ERROR_REGISTRATION = '/result/error',
     ERROR_USER_EXIST = '/result/error-user-exist',
     ERROR_CHANGE_PASSWORD = '/result/error-change-password',
-    NOT_SAVED = '/result/not-saved',
     SUCCESS = '/result/success',
     SUCCESS_CHANGE_PASSWORD = '/result/success-change-password',
 
     ERROR_CHECK_EMAIL_NO_EXIST = '/result/error-check-email-no-exist',
     ERROR_CHECK_EMAIL = '/result/error-check-email',
+
+    FEEDBACKS = '/feedbacks',
 
     NOT_FOUND = '/not-found',
 }

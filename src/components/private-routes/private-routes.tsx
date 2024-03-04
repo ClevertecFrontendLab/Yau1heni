@@ -1,14 +1,17 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { Paths } from '@customTypes/routes';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
-import { isLoggedInAuthSelector } from '@redux/selectors';
+import { accessTokenAuthSelector } from '@redux/selectors';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 
 export const PrivateRoutes = () => {
-    const isAccessToken = localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN) !== null;
-    const isLoggedIn = useAppSelector(isLoggedInAuthSelector);
+    const accessTokenFromState = useAppSelector(accessTokenAuthSelector);
+    const accessTokenFromLS = localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN);
 
-    const isAuth = isAccessToken || isLoggedIn;
+    const isAccessTokenFromState = accessTokenFromState !== null;
+    const isAccessTokenFromLS = accessTokenFromLS !== null;
+
+    const isAuth = isAccessTokenFromLS || isAccessTokenFromState;
 
     return isAuth ? <Outlet /> : <Navigate to={Paths.AUTH} replace />;
 };

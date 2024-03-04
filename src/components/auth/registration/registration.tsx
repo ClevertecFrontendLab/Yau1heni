@@ -17,6 +17,10 @@ export const Registration = () => {
         dispatch(registration({ email, password, pathname }));
     };
 
+    const authGoogleHandler = () => {
+        window.location.href = 'https://marathon-api.clevertec.ru/auth/google';
+    };
+
     return (
         <Form onFinish={onFinishHandler}>
             <Form.Item name='email' rules={[{ required: true, message: '' }]}>
@@ -84,7 +88,11 @@ export const Registration = () => {
                     >
                         Войти
                     </Button>
-                    <Button type={'text'} icon={sm && <GooglePlusOutlined />}>
+                    <Button
+                        type={'text'}
+                        onClick={authGoogleHandler}
+                        icon={sm && <GooglePlusOutlined />}
+                    >
                         Регистрация через Google
                     </Button>
                 </div>

@@ -2,13 +2,21 @@ import { Button, Card, Col, Row, Typography } from 'antd';
 import styles from './footer.module.css';
 import { AndroidFilled, AppleFilled } from '@ant-design/icons';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { push } from 'redux-first-history';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { Paths } from '@customTypes/routes';
 
 export const Footer = () => {
+    const dispatch = useAppDispatch();
     const { xs } = useBreakpoint();
 
     const styleButtonFeedback = xs
         ? { ['letterSpacing']: '0.8px', ['paddingTop']: '30px' }
         : { ['letterSpacing']: '0.8px' };
+
+    const navigateToFeedbackHandler = () => {
+        dispatch(push(Paths.FEEDBACKS));
+    };
 
     return (
         <Row
@@ -47,7 +55,12 @@ export const Footer = () => {
                 </Card>
             </Col>
             <Row align={'bottom'}>
-                <Button style={styleButtonFeedback} type='link'>
+                <Button
+                    onClick={navigateToFeedbackHandler}
+                    style={styleButtonFeedback}
+                    type='link'
+                    data-test-id='see-reviews'
+                >
                     Смотреть отзывы
                 </Button>
             </Row>

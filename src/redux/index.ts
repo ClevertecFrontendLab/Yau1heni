@@ -1,2 +1,2 @@
-export { authActions, authReducer } from './slices';
+export { authActions, authReducer, feedbackReducer, feedbackActions } from './slices';
 export * from './selectors';
