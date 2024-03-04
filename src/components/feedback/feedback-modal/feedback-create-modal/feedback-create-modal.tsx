@@ -17,8 +17,6 @@ export const FeedbackCreateModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) 
     const rating = useAppSelector(ratingFeedbackSelector);
     const message = useAppSelector(messageFeedbackSelector);
 
-    console.log(rating, 'rat');
-
     const okHandler = () => {
         setIsModalOpen(false);
         dispatch(createFeedback({ rating, message }));

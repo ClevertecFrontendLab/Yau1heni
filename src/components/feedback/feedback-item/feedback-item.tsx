@@ -30,15 +30,15 @@ export const FeedbackItem: FC<Props> = ({ feedback }) => {
 
     return (
         <Row className={styles.feedbackItem}>
-            <Col sm={4} xs={24}>
+            <Col lg={4} sm={8} xs={24}>
                 <div className={styles.userInfo}>
                     {avatar}
                     <Typography.Title level={5} className={styles.fullName}>
-                        {fullName}
+                        {fullName ?? 'Пользователь'}
                     </Typography.Title>
                 </div>
             </Col>
-            <Col sm={20} xs={24}>
+            <Col lg={20} sm={16} xs={24}>
                 <div>
                     <Rate
                         value={rating}
