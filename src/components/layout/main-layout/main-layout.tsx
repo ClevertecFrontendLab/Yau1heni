@@ -5,7 +5,7 @@ import { FC, PropsWithChildren, useState } from 'react';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
 import { authActions } from '@redux/slices';
 import { navigateTo } from '@utils/navigate-to.ts';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { Header } from '@components/header';
 import { TrapezoidButton } from '@components/trapezoid-button';

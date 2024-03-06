@@ -4,7 +4,7 @@ import { AndroidFilled, AppleFilled } from '@ant-design/icons';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { push } from 'redux-first-history';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 
 export const Footer = () => {
     const dispatch = useAppDispatch();

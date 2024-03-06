@@ -1,4 +1,4 @@
-import { Nullable } from '@customTypes/auth';
+import { Nullable } from '@common-types/auth';
 
 export type Rating = 0 | 1 | 2 | 3 | 4 | 5;
 

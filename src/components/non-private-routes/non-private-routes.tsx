@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { accessTokenAuthSelector } from '@redux/selectors';

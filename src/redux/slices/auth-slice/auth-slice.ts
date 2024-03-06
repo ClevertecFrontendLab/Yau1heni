@@ -7,9 +7,9 @@ import {
     CheckEmail,
     ChangePasswordData,
     Nullable,
-} from '@customTypes/auth';
+} from '@common-types/auth';
 import { push, replace } from 'redux-first-history';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
 import { isAxiosError } from 'axios';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';

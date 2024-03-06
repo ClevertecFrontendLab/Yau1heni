@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from './feedback-item.module.css';
-import { Feedback } from '@customTypes/feedback';
+import { Feedback } from '@common-types/feedback';
 import { Avatar, Col, Rate, Row, Typography } from 'antd';
 import { StarFilled, StarTwoTone, UserOutlined } from '@ant-design/icons';
 import { formatDate } from '@utils/format-date.ts';

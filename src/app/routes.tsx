@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { PrivateRoutes } from '@components/private-routes';
 import { MainPage } from '@pages/main-page';
 import { NonAuthRoutes } from '@components/non-private-routes';

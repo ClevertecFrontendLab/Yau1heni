@@ -3,7 +3,7 @@ import { feedbackActions } from '@redux/slices';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { isErrorFeedbackSelector } from '@redux/selectors';
 import { replace } from 'redux-first-history';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { maskStyle } from '../common-styles.ts';
 
 export const FeedbackErrorModal = () => {

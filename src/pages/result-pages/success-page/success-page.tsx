@@ -2,7 +2,7 @@ import styles from '../result-pages.module.css';
 import { Button, Result } from 'antd';
 import { AuthContainer } from '@components/auth';
 import { useDispatch } from 'react-redux';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { navigateTo } from '@utils/navigate-to.ts';
 import { useLocation } from 'react-router-dom';
 

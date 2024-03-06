@@ -1,4 +1,4 @@
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { useLocation } from 'react-router-dom';
 
 enum BreadcrumbItem {

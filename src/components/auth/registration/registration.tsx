@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { useLocation } from 'react-router-dom';
-import { AuthPayload } from '@customTypes/auth';
+import { AuthPayload } from '@common-types/auth';
 import { registration } from '@redux/slices';
 import { VALIDATE_PASSWORD_SCHEMA, validationMessages } from '@constants/validation.ts';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';

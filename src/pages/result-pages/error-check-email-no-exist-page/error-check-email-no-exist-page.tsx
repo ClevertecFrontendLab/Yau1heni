@@ -1,5 +1,5 @@
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { AuthContainer } from '@components/auth';
 import styles from '../result-pages.module.css';
 import { Button, Result } from 'antd';

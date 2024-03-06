@@ -5,11 +5,11 @@ import {
     FeedbackPayload,
     FeedbacksResponse,
     Rating,
-} from '@customTypes/feedback';
+} from '@common-types/feedback';
 import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
 import { feedbackServices } from '@services/feedback-services';
 import { isAxiosError } from 'axios';
-import { StatusCode } from '@customTypes/auth';
+import { StatusCode } from '@common-types/auth';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
 import { authActions } from '@redux/slices';
 

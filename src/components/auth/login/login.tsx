@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.t
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
-import { AuthPayload } from '@customTypes/auth';
+import { AuthPayload } from '@common-types/auth';
 import { authActions, checkEmail, login } from '@redux/slices';
 import { isRememberMeAuthSelector } from '@redux/selectors';
 import { VALIDATE_PASSWORD_SCHEMA, validationMessages } from '@constants/validation.ts';

@@ -1,6 +1,6 @@
 import { Button, Modal, Result } from 'antd';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { CreationStatus } from '@customTypes/feedback';
+import { CreationStatus } from '@common-types/feedback';
 import { FC } from 'react';
 import { feedbackActions } from '@redux/slices';
 import { creationStatusFeedbackSelector } from '@redux/selectors';

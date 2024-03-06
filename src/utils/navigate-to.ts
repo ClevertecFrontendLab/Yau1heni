@@ -1,5 +1,5 @@
 import { replace } from 'redux-first-history';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { AppDispatch } from '@redux/configure-store.ts';
 
 export const navigateTo = (args: NavigationArgs): void => {

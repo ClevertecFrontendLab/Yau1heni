@@ -1,6 +1,6 @@
 import { Button, Input, Modal, Rate } from 'antd';
 import { ChangeEvent, FC } from 'react';
-import { Rating } from '@customTypes/feedback';
+import { Rating } from '@common-types/feedback';
 import { createFeedback, feedbackActions } from '@redux/slices';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import styles from './feedback-create-modal.module.css';
@@ -57,7 +57,7 @@ export const FeedbackCreateModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) 
                 <Button
                     onClick={okHandler}
                     type={'primary'}
-                    /*disabled={rating === 0}*/
+                    disabled={rating === 0}
                     block={xs}
                     key={'new-review-submit-button'}
                     data-test-id='new-review-submit-button'
