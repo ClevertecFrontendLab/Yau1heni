@@ -40,12 +40,16 @@ export const Login = () => {
         setDisabledConfirm(hasErrors);
     };
 
+    const authGoogleHandler = () => {
+        window.location.href = 'https://marathon-api.clevertec.ru/auth/google';
+    };
+
     return (
         <Form
             form={form}
             onFinish={onFinishHandler}
             onFieldsChange={formChangeHandler}
-            initialValues={{ remember: true }}
+            initialValues={{ remember: isRememberMe }}
         >
             <Form.Item
                 name='email'
@@ -109,7 +113,11 @@ export const Login = () => {
                     <Button type='primary' htmlType='submit' data-test-id='login-submit-button'>
                         Войти
                     </Button>
-                    <Button icon={sm && <GooglePlusOutlined />} type={'text'}>
+                    <Button
+                        onClick={authGoogleHandler}
+                        icon={sm && <GooglePlusOutlined />}
+                        type={'text'}
+                    >
                         Войти через Google
                     </Button>
                 </div>

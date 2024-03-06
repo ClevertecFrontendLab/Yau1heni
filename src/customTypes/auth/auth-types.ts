@@ -29,22 +29,23 @@ export type ChangePasswordResponse = {
 };
 
 export enum StatusCode {
+    FORBIDDEN = 403,
     NOT_FOUND_404 = 404,
     USER_EXISTS = 409,
 }
 
 export type AuthInitialState = {
-    isLoading: boolean;
     isRememberMe: boolean;
-    isLoggedIn: boolean;
+    //isLoggedIn: boolean;
     registrationData: AuthData;
     checkEmail: CheckEmail;
     confirmCode: string;
     changePasswordData: ChangePasswordData;
     isErrorConfirmEmail: boolean;
+    accessToken: Nullable<string>;
 };
 
-type Nullable<T> = T | null;
+export type Nullable<T> = T | null;
 
 export type AuthData = Nullable<AuthPayload & { pathname: string }>;
 export type CheckEmail = Nullable<CheckEmailPayload & { pathname: string }>;

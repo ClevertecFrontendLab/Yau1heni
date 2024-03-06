@@ -6,21 +6,22 @@ import {
     AuthData,
     CheckEmail,
     ChangePasswordData,
+    Nullable,
 } from '@customTypes/auth';
 import { push, replace } from 'redux-first-history';
 import { Paths } from '@customTypes/routes';
 import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
 import { isAxiosError } from 'axios';
+import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
 
 const initialState: AuthInitialState = {
-    isLoading: false,
-    isRememberMe: true,
-    isLoggedIn: false,
+    isRememberMe: false,
     registrationData: null,
     checkEmail: null,
     confirmCode: '',
     changePasswordData: null,
     isErrorConfirmEmail: false,
+    accessToken: null,
 };
 
 const slice = createSlice({
@@ -33,9 +34,6 @@ const slice = createSlice({
         setIsRememberMe(state, action: PayloadAction<{ isRememberMe: boolean }>) {
             state.isRememberMe = action.payload.isRememberMe;
         },
-        setIsLoggedIn(state, action: PayloadAction<{ isLoggedIn: boolean }>) {
-            state.isLoggedIn = action.payload.isLoggedIn;
-        },
         setCHeckEmail(state, action: PayloadAction<CheckEmail>) {
             state.checkEmail = action.payload;
         },
@@ -44,6 +42,9 @@ const slice = createSlice({
         },
         setChangePasswordData(state, action: PayloadAction<ChangePasswordData>) {
             state.changePasswordData = action.payload;
+        },
+        setAccessToken(state, action: PayloadAction<{ accessToken: Nullable<string> }>) {
+            state.accessToken = action.payload.accessToken;
         },
     },
     extraReducers: (builder) => {
@@ -57,25 +58,7 @@ const slice = createSlice({
             .addCase(confirmEmail.rejected, (state) => {
                 state.isErrorConfirmEmail = true;
                 state.confirmCode = '';
-            })
-            .addMatcher(
-                (action) => action.type.endsWith('/pending'),
-                (state) => {
-                    state.isLoading = true;
-                },
-            )
-            .addMatcher(
-                (action) => action.type.endsWith('/fulfilled'),
-                (state) => {
-                    state.isLoading = false;
-                },
-            )
-            .addMatcher(
-                (action) => action.type.endsWith('/rejected'),
-                (state) => {
-                    state.isLoading = false;
-                },
-            );
+            });
     },
 });
 
@@ -124,15 +107,17 @@ export const login = createAppAsyncThunk<void, AuthData>(
     'auth/login',
     async (data, { dispatch, getState }) => {
         const isRememberMe = getState().auth?.isRememberMe;
-
         try {
             if (data !== null) {
                 const res = await authServices.login({
                     email: data.email,
                     password: data.password,
                 });
-                isRememberMe && localStorage.setItem('accessToken', res.data.accessToken);
-                dispatch(authActions.setIsLoggedIn({ isLoggedIn: true }));
+
+                isRememberMe
+                    ? localStorage.setItem(LocalStorageKeys.ACCESS_TOKEN, res.data.accessToken)
+                    : dispatch(authActions.setAccessToken({ accessToken: res.data.accessToken }));
+
                 dispatch(push(Paths.MAIN));
             }
         } catch (e) {

@@ -18,6 +18,7 @@ import {
     SuccessPage,
 } from '@pages/result-pages';
 import { NotFoundPage } from '@pages/not-found-page';
+import { FeedbacksPage } from '@pages/feedbacks-page';
 
 export const routes = (
     <Routes>
@@ -25,6 +26,7 @@ export const routes = (
 
         <Route element={<PrivateRoutes />}>
             <Route path={Paths.MAIN} element={<MainPage />} />
+            <Route path={Paths.FEEDBACKS} element={<FeedbacksPage />} />
         </Route>
 
         <Route element={<NonAuthRoutes />}>
