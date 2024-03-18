@@ -3,7 +3,7 @@ import { SidebarDesktop, SidebarMobile } from '@components/sidebar';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { FC, PropsWithChildren, useState } from 'react';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
-import { authActions, trainingActions } from '@redux/slices';
+import { authActions, trainingActions, trainingSelectors } from '@redux/slices';
 import { navigateTo } from '@utils/navigate-to';
 import { Paths } from '@common-types/routes';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
@@ -13,7 +13,6 @@ import { Footer } from '@components/footer';
 import styles from './main-layout.module.css';
 import { Breadcrumbs } from '@components/breadcrumbs';
 import { ErrorModal } from '@components/modals';
-import { isErrorTrainingMainSelector } from '@redux/selectors';
 
 export const MainLayout: FC<Props> = (props) => {
     const { isWithHeader = true, isWithFooter = true, children } = props;
@@ -21,7 +20,7 @@ export const MainLayout: FC<Props> = (props) => {
     const [collapsed, setCollapsed] = useState(false);
     const dispatch = useAppDispatch();
 
-    const isError = useAppSelector(isErrorTrainingMainSelector);
+    const isError = useAppSelector(trainingSelectors.isErrorMain);
     const clearError = () => {
         dispatch(trainingActions.setIsErrorMain({ isError: false }));
     };

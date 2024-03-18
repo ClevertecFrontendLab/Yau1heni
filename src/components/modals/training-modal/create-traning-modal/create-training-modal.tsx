@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { openPopoverIdTrainingSelector, trainingsListSelector } from '@redux/selectors';
 import dayjs, { Dayjs } from 'dayjs';
-import { trainingActions } from '@redux/slices';
+import { trainingActions, trainingSelectors } from '@redux/slices';
 import { CustomModal } from '@components/modals';
 import { Button, Col, Row, Typography } from 'antd';
 import { formatDate } from '@utils/format-date';
@@ -15,8 +14,8 @@ export const CreateTrainingModal: FC<Props> = (props) => {
     const { date, idChooseModal, id, trainings } = props;
     const dispatch = useAppDispatch();
 
-    const openPopoverId = useAppSelector(openPopoverIdTrainingSelector);
-    const trainingsList = useAppSelector(trainingsListSelector);
+    const openPopoverId = useAppSelector(trainingSelectors.openPopoverId);
+    const trainingsList = useAppSelector(trainingSelectors.trainingsList);
 
     const { top, transform, left, right } = useModalPosition(date);
 

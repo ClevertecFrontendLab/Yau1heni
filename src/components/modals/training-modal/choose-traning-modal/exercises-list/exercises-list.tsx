@@ -1,8 +1,7 @@
 import { Button, Row, Typography } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { selectedTrainingSelector } from '@redux/selectors';
-import { trainingActions } from '@redux/slices';
+import { trainingActions, trainingSelectors } from '@redux/slices';
 import { FC } from 'react';
 import { Exercise } from '@common-types/training';
 import { TrainingListEmpty } from '@components/calendar';
@@ -10,7 +9,7 @@ import { TrainingListEmpty } from '@components/calendar';
 export const ExercisesList: FC<Props> = ({ exercises }) => {
     const dispatch = useAppDispatch();
 
-    const selectedTraining = useAppSelector(selectedTrainingSelector);
+    const selectedTraining = useAppSelector(trainingSelectors.selectedTraining);
 
     const editExerciseHandler = () => {
         if (exercises.length > 0) {

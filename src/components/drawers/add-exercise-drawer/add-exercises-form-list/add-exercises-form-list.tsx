@@ -1,12 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { Button, Form, Row } from 'antd';
 import { useEffect, useState } from 'react';
-import {
-    exercisesTrainingSelector,
-    isDrawerAddExercisesOpenSelector,
-    selectedTrainingSelector,
-} from '@redux/selectors';
-import { trainingActions } from '@redux/slices';
+import { trainingActions, trainingSelectors } from '@redux/slices';
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
 import { AddExerciseItem } from './add-exercise-item/add-exercise-item.tsx';
 import { emptyExercises } from '@constants/data/empty-exercise.ts';
@@ -18,9 +13,9 @@ export const AddExercisesFormList = () => {
 
     const [checked, setChecked] = useState<number[]>([]);
 
-    const selectedTraining = useAppSelector(selectedTrainingSelector);
-    const exercises = useAppSelector(exercisesTrainingSelector);
-    const isOpen = useAppSelector(isDrawerAddExercisesOpenSelector);
+    const selectedTraining = useAppSelector(trainingSelectors.selectedTraining);
+    const exercises = useAppSelector(trainingSelectors.exercises);
+    const isOpen = useAppSelector(trainingSelectors.isDrawerAddExercisesOpen);
 
     useEffect(() => {
         form.resetFields();

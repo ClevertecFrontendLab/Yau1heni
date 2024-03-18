@@ -1,21 +1,20 @@
 import { Button, Input, Modal, Rate } from 'antd';
 import { ChangeEvent, FC } from 'react';
 import { Rating } from '@common-types/feedback';
-import { createFeedback, feedbackActions } from '@redux/slices';
+import { createFeedback, feedbackActions, feedbackSelectors } from '@redux/slices';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import styles from './feedback-create-modal.module.css';
 import { StarFilled, StarTwoTone } from '@ant-design/icons';
 import { maskStyle } from '../../common-styles.ts';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import { messageFeedbackSelector, ratingFeedbackSelector } from '@redux/selectors';
 
 export const FeedbackCreateModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) => {
     const dispatch = useAppDispatch();
 
     const { xs } = useBreakpoint();
 
-    const rating = useAppSelector(ratingFeedbackSelector);
-    const message = useAppSelector(messageFeedbackSelector);
+    const rating = useAppSelector(feedbackSelectors.rating);
+    const message = useAppSelector(feedbackSelectors.message);
 
     const okHandler = () => {
         setIsModalOpen(false);

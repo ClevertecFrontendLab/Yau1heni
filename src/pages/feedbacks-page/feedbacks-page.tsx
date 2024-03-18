@@ -1,8 +1,7 @@
 import styles from './feedbacks-page.module.css';
 import { useEffect, useState } from 'react';
-import { feedbackActions, getFeedbacks } from '@redux/slices';
+import { appSelectors, feedbackActions, feedbackSelectors, getFeedbacks } from '@redux/slices';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { feedbacksSelector, isErrorFeedbackSelector, isLoadingAppSelector } from '@redux/selectors';
 import { Button } from 'antd';
 import { Loader } from '@components/loader';
 import { MainLayout } from '@components/layout';
@@ -12,9 +11,9 @@ import { FeedbackItem, NoFeedback } from '@components/feedback';
 export const FeedbacksPage = () => {
     const dispatch = useAppDispatch();
 
-    const feedbacks = useAppSelector(feedbacksSelector);
-    const isLoading = useAppSelector(isLoadingAppSelector);
-    const isError = useAppSelector(isErrorFeedbackSelector);
+    const feedbacks = useAppSelector(feedbackSelectors.feedbacks);
+    const isLoading = useAppSelector(appSelectors.isLoading);
+    const isError = useAppSelector(feedbackSelectors.isError);
 
     const [collapsed, setCollapsed] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);

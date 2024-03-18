@@ -2,8 +2,7 @@ import { Button, Modal, Result } from 'antd';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { CreationStatus } from '@common-types/feedback';
 import { FC } from 'react';
-import { feedbackActions } from '@redux/slices';
-import { creationStatusFeedbackSelector } from '@redux/selectors';
+import { feedbackActions, feedbackSelectors } from '@redux/slices';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { maskStyle } from '../../common-styles.ts';
 
@@ -12,7 +11,7 @@ export const FeedbackResultModal: FC<Props> = ({ setIsModalOpen }) => {
 
     const { xs } = useBreakpoint();
 
-    const status = useAppSelector(creationStatusFeedbackSelector);
+    const status = useAppSelector(feedbackSelectors.creationStatus);
 
     const isSuccess = status === CreationStatus.SUCCESS;
     const isError = status === CreationStatus.ERROR;

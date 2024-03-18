@@ -84,6 +84,23 @@ const slice = createSlice({
             state.exercises = { ['empty']: [emptyExercise] };
         },
     },
+
+    selectors: {
+        trainings: (state) => state.trainings,
+        trainingsList: (state) => state.trainingsList,
+        selectedTraining: (state) => state.selectedTraining,
+        exercises: (state) => state.exercises,
+        date: (state) => state.date,
+        openPopoverId: (state) => state.openPopoverId,
+        trainingId: (state) => state.trainingId,
+        isLoadingSave: (state) => state.isLoadingSaveTraining,
+        isError: (state) => state.isError,
+        isErrorMain: (state) => state.isErrorMain,
+        isErrorSave: (state) => state.isErrorSaveTraining,
+        isDrawerAddExercisesOpen: (state) => state.isDrawerAddExercisesOpen,
+        isEditedExercise: (state) => state.isEditedExercise,
+    },
+
     extraReducers: (builder) => {
         builder
             .addCase(getTrainings.pending, (state) => {
@@ -147,7 +164,11 @@ const slice = createSlice({
     },
 });
 
-export const { reducer: trainingReducer, actions: trainingActions } = slice;
+export const {
+    reducer: trainingReducer,
+    actions: trainingActions,
+    selectors: trainingSelectors,
+} = slice;
 
 export const getTrainings = createAppAsyncThunk<Training[], void>(
     'training/getTrainings',

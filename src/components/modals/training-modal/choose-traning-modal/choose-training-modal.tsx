@@ -3,16 +3,7 @@ import styles from './choose-training-modal.module.css';
 import { Button, Row, Select } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import {
-    exercisesTrainingSelector,
-    isEditedExerciseSelector,
-    isLoadingSaveTrainingSelector,
-    openPopoverIdTrainingSelector,
-    selectedTrainingSelector,
-    trainingIdTrainingSelector,
-    trainingsListSelector,
-} from '@redux/selectors';
-import { createTraining, editTraining, trainingActions } from '@redux/slices';
+import { createTraining, editTraining, trainingActions, trainingSelectors } from '@redux/slices';
 import dayjs, { Dayjs } from 'dayjs';
 import { Training } from '@common-types/training';
 import { optionsListBuilder } from '@utils/options-list-builder';
@@ -26,14 +17,14 @@ export const ChooseTrainingModal: FC<Props> = (props) => {
 
     const { top, transform, left, right } = useModalPosition(date);
 
-    const trainingsList = useAppSelector(trainingsListSelector);
-    const selectedTraining = useAppSelector(selectedTrainingSelector);
-    const exercises = useAppSelector(exercisesTrainingSelector);
+    const trainingsList = useAppSelector(trainingSelectors.trainingsList);
+    const selectedTraining = useAppSelector(trainingSelectors.selectedTraining);
+    const exercises = useAppSelector(trainingSelectors.exercises);
 
-    const openPopoverId = useAppSelector(openPopoverIdTrainingSelector);
-    const isLoading = useAppSelector(isLoadingSaveTrainingSelector);
-    const isEditedExercise = useAppSelector(isEditedExerciseSelector);
-    const trainingId = useAppSelector(trainingIdTrainingSelector);
+    const openPopoverId = useAppSelector(trainingSelectors.openPopoverId);
+    const isLoading = useAppSelector(trainingSelectors.isLoadingSave);
+    const isEditedExercise = useAppSelector(trainingSelectors.isEditedExercise);
+    const trainingId = useAppSelector(trainingSelectors.trainingId);
 
     const isOpen = openPopoverId === idChooseModal;
     const isPastOrToday = date.isSame(dayjs(), 'day') || date.isBefore(dayjs(), 'day');

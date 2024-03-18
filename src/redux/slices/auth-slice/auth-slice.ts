@@ -47,6 +47,17 @@ const slice = createSlice({
             state.accessToken = action.payload.accessToken;
         },
     },
+
+    selectors: {
+        isRememberMe: (state) => state.isRememberMe,
+        registrationData: (state) => state.registrationData,
+        checkEmail: (state) => state.checkEmail,
+        confirmCode: (state) => state.confirmCode,
+        changePasswordData: (state) => state.changePasswordData,
+        isErrorConfirmEmail: (state) => state.isErrorConfirmEmail,
+        accessToken: (state) => state.accessToken,
+    },
+
     extraReducers: (builder) => {
         builder
             .addCase(confirmEmail.fulfilled, (state) => {
@@ -62,7 +73,7 @@ const slice = createSlice({
     },
 });
 
-export const { reducer: authReducer, actions: authActions } = slice;
+export const { reducer: authReducer, actions: authActions, selectors: authSelectors } = slice;
 
 export const registration = createAppAsyncThunk<void, AuthData>(
     'auth/registration',

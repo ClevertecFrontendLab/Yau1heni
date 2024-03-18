@@ -2,12 +2,8 @@ import { MainLayout } from '@components/layout';
 import './calendar-page.module.css';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import {
-    isErrorSaveTrainingSelector,
-    isErrorTrainingSelector,
-    trainingsSelector,
-} from '@redux/selectors';
-import { getTrainingList, getTrainings, trainingActions } from '@redux/slices';
+
+import { getTrainingList, getTrainings, trainingActions, trainingSelectors } from '@redux/slices';
 import dayjs, { Dayjs } from 'dayjs';
 import { Calendar, CustomCalendarCell } from '@components/calendar';
 import { localeCalendar } from '@constants/locale-calendar';
@@ -20,9 +16,10 @@ const CalendarPage = () => {
     const dispatch = useAppDispatch();
 
     const { xs } = useBreakpoint();
-    const trainings = useAppSelector(trainingsSelector);
-    const isErrorOpened = useAppSelector(isErrorTrainingSelector);
-    const isErrorSaving = useAppSelector(isErrorSaveTrainingSelector);
+
+    const trainings = useAppSelector(trainingSelectors.trainings);
+    const isErrorOpened = useAppSelector(trainingSelectors.isError);
+    const isErrorSaving = useAppSelector(trainingSelectors.isErrorSave);
 
     useEffect(() => {
         dispatch(getTrainingList());
