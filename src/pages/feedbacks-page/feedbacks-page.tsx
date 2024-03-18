@@ -1,24 +1,20 @@
 import styles from './feedbacks-page.module.css';
 import { useEffect, useState } from 'react';
-import { getFeedbacks } from '@redux/slices';
+import { feedbackActions, getFeedbacks } from '@redux/slices';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { feedbacksSelector, isLoadingAppSelector } from '@redux/selectors';
+import { feedbacksSelector, isErrorFeedbackSelector, isLoadingAppSelector } from '@redux/selectors';
 import { Button } from 'antd';
 import { Loader } from '@components/loader';
-import {
-    FeedbackCreateModal,
-    FeedbackErrorModal,
-    FeedbackItem,
-    FeedbackResultModal,
-    NoFeedback,
-} from '@components/feedback';
 import { MainLayout } from '@components/layout';
+import { ErrorModal, FeedbackCreateModal, FeedbackResultModal } from '@components/modals';
+import { FeedbackItem, NoFeedback } from '@components/feedback';
 
 export const FeedbacksPage = () => {
     const dispatch = useAppDispatch();
 
     const feedbacks = useAppSelector(feedbacksSelector);
     const isLoading = useAppSelector(isLoadingAppSelector);
+    const isError = useAppSelector(isErrorFeedbackSelector);
 
     const [collapsed, setCollapsed] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,6 +22,10 @@ export const FeedbacksPage = () => {
     useEffect(() => {
         dispatch(getFeedbacks());
     }, [dispatch]);
+
+    const clearError = () => {
+        dispatch(feedbackActions.setIsError({ isError: false }));
+    };
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -70,7 +70,7 @@ export const FeedbacksPage = () => {
             )}
 
             <FeedbackCreateModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-            <FeedbackErrorModal />
+            <ErrorModal clearError={clearError} isError={isError} />
             <FeedbackResultModal setIsModalOpen={setIsModalOpen} />
         </MainLayout>
     );

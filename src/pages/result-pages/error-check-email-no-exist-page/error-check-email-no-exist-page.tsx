@@ -3,7 +3,7 @@ import { Paths } from '@common-types/routes';
 import { AuthContainer } from '@components/auth';
 import styles from '../result-pages.module.css';
 import { Button, Result } from 'antd';
-import { navigateTo } from '@utils/navigate-to.ts';
+import { navigateTo } from '@utils/navigate-to';
 import { useLocation } from 'react-router-dom';
 
 export const ErrorCheckEmailNoExistPage = () => {

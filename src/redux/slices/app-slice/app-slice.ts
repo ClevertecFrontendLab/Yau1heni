@@ -1,13 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
     isLoading: false,
+    isError: false,
 };
 
 const slice = createSlice({
     name: 'app',
     initialState,
-    reducers: {},
+    reducers: {
+        setIsError(state, action: PayloadAction<{ isError: boolean }>) {
+            state.isError = action.payload.isError;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addMatcher(

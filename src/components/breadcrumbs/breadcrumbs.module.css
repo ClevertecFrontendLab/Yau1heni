@@ -1,4 +1,4 @@
 .breadcrumbs {
     background: var(--neutral-gray-1);
-    padding: var(--gap-m) var(--gap-xl);
+    padding-top: var(--gap-m)
 }

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 enum BreadcrumbItem {
     MAIN = 'Главная',
     FEEDBACKS = 'Отзывы пользователей',
+    CALENDAR = 'Календарь',
 }
 
 const breadcrumbData = [
@@ -14,6 +15,10 @@ const breadcrumbData = [
     {
         path: Paths.FEEDBACKS,
         name: BreadcrumbItem.FEEDBACKS,
+    },
+    {
+        path: Paths.CALENDAR,
+        name: BreadcrumbItem.CALENDAR,
     },
 ];
 

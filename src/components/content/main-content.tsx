@@ -2,11 +2,27 @@ import { CardItem } from './card-item/card-item.tsx';
 import { Col, Row, Typography } from 'antd';
 import styles from './main-content.module.css';
 import { itemsCards } from './card-item/data/items.tsx';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { getTrainings } from '@redux/slices';
+import { PageName } from '@common-types/routes';
 
 export const MainContent = () => {
+    const dispatch = useAppDispatch();
+
+    const pageTurnHandler = (type: string) => {
+        if (type === PageName.CALENDAR) dispatch(getTrainings());
+    };
+
     const cardsList = itemsCards.map((card) => (
         <Col key={card.id} md={8} sm={24} xs={24}>
-            <CardItem Icon={card.icon} title={card.title} text={card.text} />
+            <CardItem
+                Icon={card.icon}
+                title={card.title}
+                text={card.text}
+                dataTestId={card.dataTestId}
+                toPath={card.toPath}
+                onclick={() => pageTurnHandler(card.text)}
+            />
         </Col>
     ));
 

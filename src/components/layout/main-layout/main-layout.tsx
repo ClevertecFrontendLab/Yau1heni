@@ -3,21 +3,28 @@ import { SidebarDesktop, SidebarMobile } from '@components/sidebar';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { FC, PropsWithChildren, useState } from 'react';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
-import { authActions } from '@redux/slices';
-import { navigateTo } from '@utils/navigate-to.ts';
+import { authActions, trainingActions } from '@redux/slices';
+import { navigateTo } from '@utils/navigate-to';
 import { Paths } from '@common-types/routes';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { Header } from '@components/header';
 import { TrapezoidButton } from '@components/trapezoid-button';
 import { Footer } from '@components/footer';
 import styles from './main-layout.module.css';
 import { Breadcrumbs } from '@components/breadcrumbs';
+import { ErrorModal } from '@components/modals';
+import { isErrorTrainingMainSelector } from '@redux/selectors';
 
 export const MainLayout: FC<Props> = (props) => {
     const { isWithHeader = true, isWithFooter = true, children } = props;
 
     const [collapsed, setCollapsed] = useState(false);
     const dispatch = useAppDispatch();
+
+    const isError = useAppSelector(isErrorTrainingMainSelector);
+    const clearError = () => {
+        dispatch(trainingActions.setIsErrorMain({ isError: false }));
+    };
 
     const { xs } = useBreakpoint();
 
@@ -35,7 +42,7 @@ export const MainLayout: FC<Props> = (props) => {
         <Layout>
             {xs ? (
                 <SidebarMobile
-                    collapsed={collapsed}
+                    collapsed={!collapsed}
                     toggleCollapsed={toggleCollapsed}
                     logout={logoutHandler}
                 />
@@ -56,6 +63,7 @@ export const MainLayout: FC<Props> = (props) => {
                             />
                         )}
                         {children}
+                        <ErrorModal clearError={clearError} isError={isError} />
                     </Layout.Content>
                     {isWithFooter && (
                         <Layout.Footer>

@@ -18,10 +18,13 @@ export enum Paths {
     ERROR_CHECK_EMAIL = '/result/error-check-email',
 
     FEEDBACKS = '/feedbacks',
-
     CALENDAR = '/calendar',
-    TRAINING_LIST = '/calendar/training-list',
-    TRAINING = '/training',
 
     NOT_FOUND = '/not-found',
+}
+
+export enum PageName {
+    CALENDAR = 'Календарь',
+    TRAINING = 'Тренировка',
+    PROFILE = 'Профиль',
 }

@@ -1,9 +1,10 @@
 import { CalendarTwoTone, HeartFilled, ProfileOutlined, TrophyFilled } from '@ant-design/icons';
 import { MenuItem } from '../types/types.ts';
+import { PageName } from '@common-types/routes';
 
 export const itemsSideBar: MenuItem[] = [
     {
-        key: '1',
+        key: PageName.CALENDAR,
         icon: <CalendarTwoTone twoToneColor={['#003a8c', '#003a8c']} />,
         label: 'Календарь',
     },
@@ -26,7 +27,7 @@ export const itemsSideBar: MenuItem[] = [
 
 export const itemsSideBarMobile: MenuItem[] = [
     {
-        key: '1',
+        key: PageName.CALENDAR,
         label: 'Календарь',
     },
     {

@@ -15,7 +15,7 @@ export const SidebarMobile: FC<PropsSidebarMobile> = ({ toggleCollapsed, collaps
             style={{
                 position: 'fixed',
                 height: '100%',
-                zIndex: 1,
+                zIndex: 100,
                 left: 0,
                 top: 0,
                 bottom: 0,

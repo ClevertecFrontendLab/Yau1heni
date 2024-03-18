@@ -3,8 +3,9 @@ import styles from './feedback-item.module.css';
 import { Feedback } from '@common-types/feedback';
 import { Avatar, Col, Rate, Row, Typography } from 'antd';
 import { StarFilled, StarTwoTone, UserOutlined } from '@ant-design/icons';
-import { formatDate } from '@utils/format-date.ts';
+import { formatDate } from '@utils/format-date';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { DateFormat } from '@common-types/training';
 
 export const FeedbackItem: FC<Props> = ({ feedback }) => {
     const { createdAt, message, rating, imageSrc, fullName } = feedback;
@@ -48,7 +49,7 @@ export const FeedbackItem: FC<Props> = ({ feedback }) => {
                     />
                     {!xs && (
                         <Typography.Text type={'secondary'}>
-                            {formatDate({ date: createdAt, format: 'DD.MM.YYYY' })}
+                            {formatDate({ date: createdAt, format: DateFormat.EURO_DATE })}
                         </Typography.Text>
                     )}
                 </div>

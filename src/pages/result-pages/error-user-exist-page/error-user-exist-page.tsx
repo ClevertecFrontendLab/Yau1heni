@@ -3,7 +3,7 @@ import { Button, Result } from 'antd';
 import { AuthContainer } from '@components/auth';
 import { Paths } from '@common-types/routes';
 import { useDispatch } from 'react-redux';
-import { navigateTo } from '@utils/navigate-to.ts';
+import { navigateTo } from '@utils/navigate-to';
 import { useLocation } from 'react-router-dom';
 
 export const ErrorUserExistPage = () => {
