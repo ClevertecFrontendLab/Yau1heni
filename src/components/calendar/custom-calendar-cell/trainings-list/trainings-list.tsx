@@ -38,7 +38,11 @@ export const TrainingsList: FC<Props> = (props) => {
                     <Button
                         data-test-id={`modal-update-training-edit-button${index}`}
                         disabled={training.isImplementation}
-                        icon={<EditOutlined />}
+                        icon={
+                            <EditOutlined
+                                style={training.isImplementation ? undefined : { color: '#2f54eb' }}
+                            />
+                        }
                     />
                 </Row>
             ) : (

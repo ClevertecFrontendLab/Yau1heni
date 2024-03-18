@@ -1,5 +1,5 @@
 .exercisesListContainer {
-    margin: 16px 0;
+    margin: var(--gap-m) 0;
     max-height: 200px;
     overflow-y: scroll;
 }
@@ -11,5 +11,9 @@
 .exercisesListContainer::-webkit-scrollbar-thumb {
     background-color: var(--character-light-disable-25);
     border-radius: var(--border-radius-xxl);
+}
+
+.addExercisesButton:disabled {
+    color: var(--character-light-title-85);
 }
 

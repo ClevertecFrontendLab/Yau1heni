@@ -110,13 +110,15 @@ export const ChooseTrainingModal: FC<Props> = (props) => {
 
                 <Row justify={'center'} gutter={[0, 8]}>
                     <Button
-                        type={'primary'}
+                        type={'text'}
+                        className={styles.addExercisesButton}
                         onClick={addExerciseHandler}
                         disabled={!selectedTraining}
                     >
                         Добавить упражнения
                     </Button>
                     <Button
+                        type={'link'}
                         disabled={exercisesList?.length === 0}
                         onClick={saveExerciseHandler}
                         loading={isLoading}

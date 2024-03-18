@@ -44,7 +44,7 @@ export const CreateTrainingModal: FC<Props> = (props) => {
             isOpen={isOpen}
         >
             <div data-test-id='modal-create-training' onClick={(e) => e.stopPropagation()}>
-                <Row justify={'space-between'} align={'top'}>
+                <Row justify={'space-between'} align={'top'} style={{ marginBottom: '24px' }}>
                     <Col>
                         <Col>
                             <Typography.Text strong>

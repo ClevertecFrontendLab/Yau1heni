@@ -34,7 +34,7 @@ export const ExercisesList: FC<Props> = ({ exercises }) => {
                     <Button
                         data-test-id={`modal-update-training-edit-button${index}`}
                         onClick={editExerciseHandler}
-                        icon={<EditOutlined />}
+                        icon={<EditOutlined style={{ color: '#2f54eb' }} />}
                     />
                 </Row>
             ))
