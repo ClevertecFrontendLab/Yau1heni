@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
-import { accessTokenAuthSelector } from '@redux/selectors';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { authSelectors } from '@redux/slices';
 
 export const PrivateRoutes = () => {
-    const accessTokenFromState = useAppSelector(accessTokenAuthSelector);
+    const accessTokenFromState = useAppSelector(authSelectors.accessToken);
     const accessTokenFromLS = localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN);
 
     const isAccessTokenFromState = accessTokenFromState !== null;

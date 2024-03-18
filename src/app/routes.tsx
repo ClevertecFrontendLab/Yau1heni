@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { PrivateRoutes } from '@components/private-routes';
 import { MainPage } from '@pages/main-page';
 import { NonAuthRoutes } from '@components/non-private-routes';
@@ -19,6 +19,7 @@ import {
 } from '@pages/result-pages';
 import { NotFoundPage } from '@pages/not-found-page';
 import { FeedbacksPage } from '@pages/feedbacks-page';
+import { CalendarPage } from '@pages/calendar-page';
 
 export const routes = (
     <Routes>
@@ -27,6 +28,7 @@ export const routes = (
         <Route element={<PrivateRoutes />}>
             <Route path={Paths.MAIN} element={<MainPage />} />
             <Route path={Paths.FEEDBACKS} element={<FeedbacksPage />} />
+            <Route path={Paths.CALENDAR} element={<CalendarPage />} />
         </Route>
 
         <Route element={<NonAuthRoutes />}>

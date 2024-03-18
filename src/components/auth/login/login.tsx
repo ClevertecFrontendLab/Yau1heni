@@ -5,9 +5,8 @@ import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.t
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
-import { AuthPayload } from '@customTypes/auth';
-import { authActions, checkEmail, login } from '@redux/slices';
-import { isRememberMeAuthSelector } from '@redux/selectors';
+import { AuthPayload } from '@common-types/auth';
+import { authActions, authSelectors, checkEmail, login } from '@redux/slices';
 import { VALIDATE_PASSWORD_SCHEMA, validationMessages } from '@constants/validation.ts';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
@@ -15,7 +14,7 @@ export const Login = () => {
     const dispatch = useAppDispatch();
     const [disabledConfirm, setDisabledConfirm] = useState(false);
     const { pathname } = useLocation();
-    const isRememberMe = useAppSelector(isRememberMeAuthSelector);
+    const isRememberMe = useAppSelector(authSelectors.isRememberMe);
     const [form] = Form.useForm();
     const { sm } = useBreakpoint();
 

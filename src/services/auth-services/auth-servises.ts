@@ -7,7 +7,7 @@ import {
     ConfirmEmailPayload,
     ChangePasswordPayload,
     ChangePasswordResponse,
-} from '@customTypes/auth';
+} from '@common-types/auth';
 
 export const authServices = {
     login(data: AuthPayload) {

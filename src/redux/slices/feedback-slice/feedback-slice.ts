@@ -5,11 +5,11 @@ import {
     FeedbackPayload,
     FeedbacksResponse,
     Rating,
-} from '@customTypes/feedback';
+} from '@common-types/feedback';
 import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
 import { feedbackServices } from '@services/feedback-services';
 import { isAxiosError } from 'axios';
-import { StatusCode } from '@customTypes/auth';
+import { StatusCode } from '@common-types/auth';
 import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
 import { authActions } from '@redux/slices';
 
@@ -38,6 +38,15 @@ const slice = createSlice({
             state.creationStatus = action.payload.status;
         },
     },
+
+    selectors: {
+        feedbacks: (state) => state.feedbacks,
+        isError: (state) => state.isError,
+        rating: (state) => state.rating,
+        message: (state) => state.message,
+        creationStatus: (state) => state.creationStatus,
+    },
+
     extraReducers: (builder) => {
         builder
             .addCase(getFeedbacks.pending, (state) => {
@@ -57,7 +66,11 @@ const slice = createSlice({
     },
 });
 
-export const { reducer: feedbackReducer, actions: feedbackActions } = slice;
+export const {
+    reducer: feedbackReducer,
+    actions: feedbackActions,
+    selectors: feedbackSelectors,
+} = slice;
 
 export const getFeedbacks = createAppAsyncThunk<FeedbacksResponse, void>(
     'feedback/getFeedbacks',

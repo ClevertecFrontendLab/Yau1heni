@@ -1,5 +1,5 @@
 import { instance } from '../config/axios-config.ts';
-import { FeedbackPayload, FeedbacksResponse } from '@customTypes/feedback';
+import { FeedbackPayload, FeedbacksResponse } from '@common-types/feedback';
 
 export const feedbackServices = {
     getFeedbacks() {

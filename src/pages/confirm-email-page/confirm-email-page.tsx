@@ -3,19 +3,14 @@ import { AuthContainer } from '@components/auth';
 import styles from './confirm-email-page.module.css';
 import { Result, Typography } from 'antd';
 import VerificationInput from 'react-verification-input';
-import {
-    checkEmailAuthSelector,
-    codeAuthSelector,
-    isErrorConfirmEmailAuthSelector,
-} from '@redux/selectors';
-import { authActions, confirmEmail } from '@redux/slices';
+import { authActions, authSelectors, confirmEmail } from '@redux/slices';
 
 export const ConfirmEmailPage = () => {
     const dispatch = useAppDispatch();
 
-    const code = useAppSelector(codeAuthSelector);
-    const isError = useAppSelector(isErrorConfirmEmailAuthSelector);
-    const email = useAppSelector(checkEmailAuthSelector);
+    const code = useAppSelector(authSelectors.confirmCode);
+    const isError = useAppSelector(authSelectors.isErrorConfirmEmail);
+    const email = useAppSelector(authSelectors.checkEmail);
 
     const onCompleteHandler = (code: string) => {
         dispatch(confirmEmail(code));

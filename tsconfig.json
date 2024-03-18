@@ -26,7 +26,7 @@
             "@hooks/*": ["./src/hooks/*"],
             "@pages/*": ["./src/pages/*"],
             "@redux/*": ["./src/redux/*"],
-            "@customTypes/*": ["./src/customTypes/*"],
+            "@common-types/*": ["./src/common-types/*"],
             "@utils/*": ["./src/utils/*"],
             "@assets/*": ["./src/assets/*"],
             "@services/*": ["./src/services/*"],

@@ -1,4 +1,4 @@
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 import { Login, Registration } from '@components/auth';
 
 export const items = [

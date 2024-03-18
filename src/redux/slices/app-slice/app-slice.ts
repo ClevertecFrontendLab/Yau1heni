@@ -8,6 +8,9 @@ const slice = createSlice({
     name: 'app',
     initialState,
     reducers: {},
+    selectors: {
+        isLoading: (state) => state.isLoading,
+    },
     extraReducers: (builder) => {
         builder
             .addMatcher(
@@ -31,4 +34,4 @@ const slice = createSlice({
     },
 });
 
-export const { reducer: appReducer, actions: appActions } = slice;
+export const { reducer: appReducer, selectors: appSelectors } = slice;

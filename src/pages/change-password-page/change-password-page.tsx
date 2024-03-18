@@ -3,7 +3,7 @@ import { AuthContainer } from '@components/auth';
 import styles from './change-password-page.module.css';
 import { Button, Form, Input, Typography } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { ChangePasswordPayload } from '@customTypes/auth';
+import { ChangePasswordPayload } from '@common-types/auth';
 import { useLocation } from 'react-router-dom';
 import { changePassword } from '@redux/slices';
 import { validationMessages, VALIDATE_PASSWORD_SCHEMA } from '@constants/validation.ts';

@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { Paths } from '@customTypes/routes';
+import { Paths } from '@common-types/routes';
 
 export const ProtectedResultRoutes = () => {
     const location = useLocation();
