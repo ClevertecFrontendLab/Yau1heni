@@ -19,6 +19,7 @@ export enum Paths {
 
     FEEDBACKS = '/feedbacks',
     CALENDAR = '/calendar',
+    PROFILE = '/profile',
 
     NOT_FOUND = '/not-found',
 }

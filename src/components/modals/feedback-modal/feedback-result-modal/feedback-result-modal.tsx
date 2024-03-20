@@ -1,9 +1,10 @@
-import { Button, Modal, Result } from 'antd';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { CreationStatus } from '@common-types/feedback';
 import { FC } from 'react';
+import { CreationStatus } from '@common-types/feedback';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { feedbackActions, feedbackSelectors } from '@redux/slices';
+import { Button, Modal, Result } from 'antd';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+
 import { maskStyle } from '../../common-styles.ts';
 
 export const FeedbackResultModal: FC<Props> = ({ setIsModalOpen }) => {
@@ -38,21 +39,21 @@ export const FeedbackResultModal: FC<Props> = ({ setIsModalOpen }) => {
             <Modal
                 open={isError}
                 closable={false}
-                centered
+                centered={true}
                 bodyStyle={{ padding: 0 }}
                 maskStyle={maskStyle}
                 width={widthModal}
                 footer={null}
             >
                 <Result
-                    status={'error'}
-                    title={'Данные не сохранились'}
-                    subTitle={'Что-то пошло не так. Попробуйте еще раз.'}
+                    status='error'
+                    title='Данные не сохранились'
+                    subTitle='Что-то пошло не так. Попробуйте еще раз.'
                     extra={
                         <div>
                             <Button
                                 onClick={okHandler}
-                                type={'primary'}
+                                type='primary'
                                 style={widthButton}
                                 key='write-review-not-saved-modal'
                                 data-test-id='write-review-not-saved-modal'
@@ -72,22 +73,21 @@ export const FeedbackResultModal: FC<Props> = ({ setIsModalOpen }) => {
             </Modal>
         );
     }
-
     if (isSuccess) {
         return (
             <Modal
                 open={isSuccess}
                 closable={false}
-                centered
+                centered={true}
                 maskStyle={maskStyle}
                 footer={null}
                 width={widthModal}
             >
                 <Result
-                    status={'success'}
-                    title={'Отзыв успешно опубликован'}
+                    status='success'
+                    title='Отзыв успешно опубликован'
                     extra={
-                        <Button onClick={cancelHandler} block type={'primary'}>
+                        <Button onClick={cancelHandler} block={true} type='primary'>
                             Отлично
                         </Button>
                     }
@@ -95,6 +95,8 @@ export const FeedbackResultModal: FC<Props> = ({ setIsModalOpen }) => {
             </Modal>
         );
     }
+
+    return null;
 };
 
 type Props = {

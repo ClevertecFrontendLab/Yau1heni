@@ -1,12 +1,14 @@
-import { Button, Input, Modal, Rate } from 'antd';
 import { ChangeEvent, FC } from 'react';
-import { Rating } from '@common-types/feedback';
-import { createFeedback, feedbackActions, feedbackSelectors } from '@redux/slices';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import styles from './feedback-create-modal.module.css';
 import { StarFilled, StarTwoTone } from '@ant-design/icons';
-import { maskStyle } from '../../common-styles.ts';
+import { Rating } from '@common-types/feedback';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { createFeedback, feedbackActions, feedbackSelectors } from '@redux/slices';
+import { Button, Input, Modal, Rate } from 'antd';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+
+import { maskStyle } from '../../common-styles.ts';
+
+import styles from './feedback-create-modal.module.css';
 
 export const FeedbackCreateModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) => {
     const dispatch = useAppDispatch();
@@ -25,8 +27,8 @@ export const FeedbackCreateModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) 
         setIsModalOpen(false);
     };
 
-    const setRatingHandler = (rating: number) => {
-        dispatch(feedbackActions.setRating({ rating: rating as Rating }));
+    const setRatingHandler = (newRating: number) => {
+        dispatch(feedbackActions.setRating({ rating: newRating as Rating }));
     };
 
     const onChangeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -37,28 +39,30 @@ export const FeedbackCreateModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) 
         if (index !== undefined && value !== undefined) {
             if (index < value) {
                 return <StarFilled style={{ color: '#faad14' }} />;
-            } else {
-                return <StarTwoTone twoToneColor={'#faad14'} />;
             }
+
+            return <StarTwoTone twoToneColor='#faad14' />;
         }
+
+        return null;
     };
 
     return (
         <Modal
-            title={'Ваш отзыв'}
+            title='Ваш отзыв'
             open={isModalOpen}
             onOk={okHandler}
             onCancel={cancelHandler}
-            centered
+            centered={true}
             maskStyle={maskStyle}
             bodyStyle={xs ? { padding: '16px' } : {}}
             footer={[
                 <Button
                     onClick={okHandler}
-                    type={'primary'}
+                    type='primary'
                     disabled={rating === 0}
                     block={xs}
-                    key={'new-review-submit-button'}
+                    key='new-review-submit-button'
                     data-test-id='new-review-submit-button'
                 >
                     Опубликовать
@@ -72,12 +76,12 @@ export const FeedbackCreateModal: FC<Props> = ({ isModalOpen, setIsModalOpen }) 
                 character={characterRateHandler}
             />
             <Input.TextArea
-                autoSize
+                autoSize={true}
                 className={styles.textarea}
                 bordered={false}
                 value={message}
                 onChange={onChangeMessageHandler}
-                placeholder={'Расскажите, почему Вам понравилось наше приложение.'}
+                placeholder='Расскажите, почему Вам понравилось наше приложение.'
             />
         </Modal>
     );

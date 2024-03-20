@@ -1,12 +1,16 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Paths } from '@common-types/routes';
-import { PrivateRoutes } from '@components/private-routes';
-import { MainPage } from '@pages/main-page';
 import { NonAuthRoutes } from '@components/non-private-routes';
-import { AuthPage } from '@pages/auth-page';
-import { ConfirmEmailPage } from '@pages/confirm-email-page';
-import { ChangePasswordPage } from '@pages/change-password-page';
+import { PrivateRoutes } from '@components/private-routes';
 import { ProtectedResultRoutes } from '@components/protected-result-routes';
+import { AuthPage } from '@pages/auth-page';
+import { CalendarPage } from '@pages/calendar-page';
+import { ChangePasswordPage } from '@pages/change-password-page';
+import { ConfirmEmailPage } from '@pages/confirm-email-page';
+import { FeedbacksPage } from '@pages/feedbacks-page';
+import { MainPage } from '@pages/main-page';
+import { NotFoundPage } from '@pages/not-found-page';
+import { ProfilePage } from '@pages/profile-page';
 import {
     ErrorChangePasswordPage,
     ErrorCheckEmailNoExistPage,
@@ -17,18 +21,16 @@ import {
     SuccessChangePasswordPage,
     SuccessPage,
 } from '@pages/result-pages';
-import { NotFoundPage } from '@pages/not-found-page';
-import { FeedbacksPage } from '@pages/feedbacks-page';
-import { CalendarPage } from '@pages/calendar-page';
 
 export const routes = (
     <Routes>
-        <Route path={'/'} element={<Navigate to={Paths.MAIN} />} />
+        <Route path='/' element={<Navigate to={Paths.MAIN} />} />
 
         <Route element={<PrivateRoutes />}>
             <Route path={Paths.MAIN} element={<MainPage />} />
             <Route path={Paths.FEEDBACKS} element={<FeedbacksPage />} />
             <Route path={Paths.CALENDAR} element={<CalendarPage />} />
+            <Route path={Paths.PROFILE} element={<ProfilePage />} />
         </Route>
 
         <Route element={<NonAuthRoutes />}>
@@ -57,7 +59,7 @@ export const routes = (
             </Route>
         </Route>
 
-        <Route path={'*'} element={<Navigate to={Paths.NOT_FOUND} />} />
+        <Route path='*' element={<Navigate to={Paths.NOT_FOUND} />} />
         <Route path={Paths.NOT_FOUND} element={<NotFoundPage />} />
     </Routes>
 );

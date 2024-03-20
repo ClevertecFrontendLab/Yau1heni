@@ -21,6 +21,7 @@ module.exports = {
                 'no-param-reassign': 'off',
                 'no-return-assign': 'off',
                 'import/no-default-export': 'off',
+                '@typescript-eslint/no-use-before-define': ['warn', { 'functions': true }],
             },
         },
     ],
@@ -30,6 +31,6 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         'import/no-extraneous-dependencies': [
             'error', {devDependencies: ['cypress/**/*.ts', '/*.test.{ts,tsx,js,jsx}'],},
-        ]
+        ],
     },
 };

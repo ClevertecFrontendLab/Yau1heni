@@ -13,5 +13,5 @@ export const NonAuthRoutes = () => {
 
     const isAuth = isAccessTokenFromLS || isAccessTokenFromState;
 
-    return isAuth ? <Navigate to={Paths.MAIN} replace /> : <Outlet />;
+    return isAuth ? <Navigate to={Paths.MAIN} replace={true} /> : <Outlet />;
 };

@@ -1,12 +1,13 @@
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
-import { AuthContainer } from '@components/auth';
-import styles from './change-password-page.module.css';
-import { Button, Form, Input, Typography } from 'antd';
+import { useLocation } from 'react-router-dom';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { ChangePasswordPayload } from '@common-types/auth';
-import { useLocation } from 'react-router-dom';
+import { AuthContainer } from '@components/auth';
+import { VALIDATE_PASSWORD_SCHEMA, validationMessages } from '@constants/validation.ts';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { changePassword } from '@redux/slices';
-import { validationMessages, VALIDATE_PASSWORD_SCHEMA } from '@constants/validation.ts';
+import { Button, Form, Input, Typography } from 'antd';
+
+import styles from './change-password-page.module.css';
 
 export const ChangePasswordPage = () => {
     const dispatch = useAppDispatch();
@@ -15,6 +16,9 @@ export const ChangePasswordPage = () => {
     const onFinishHandler = ({ password, confirmPassword }: ChangePasswordPayload) => {
         dispatch(changePassword({ password, confirmPassword, pathname }));
     };
+
+    const renderPasswordIcon = (visible: boolean) =>
+        visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />;
 
     return (
         <AuthContainer>
@@ -34,10 +38,8 @@ export const ChangePasswordPage = () => {
                     >
                         <Input.Password
                             placeholder='Пароль'
-                            size={'large'}
-                            iconRender={(visible) =>
-                                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                            }
+                            size='large'
+                            iconRender={renderPasswordIcon}
                             data-test-id='change-password'
                         />
                     </Form.Item>
@@ -54,6 +56,7 @@ export const ChangePasswordPage = () => {
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve();
                                     }
+
                                     return Promise.reject(
                                         new Error(validationMessages.CONFIRM_PASSWORD_ERROR),
                                     );
@@ -63,18 +66,16 @@ export const ChangePasswordPage = () => {
                     >
                         <Input.Password
                             placeholder='Повторите пароль'
-                            size={'large'}
-                            iconRender={(visible) =>
-                                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                            }
+                            size='large'
+                            iconRender={renderPasswordIcon}
                             data-test-id='change-confirm-password'
                         />
                     </Form.Item>
                     <Form.Item>
                         <Button
-                            type={'primary'}
+                            type='primary'
                             className={styles.button}
-                            block
+                            block={true}
                             htmlType='submit'
                             data-test-id='change-submit-button'
                         >

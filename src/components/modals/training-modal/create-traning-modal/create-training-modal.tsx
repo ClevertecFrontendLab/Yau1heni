@@ -1,14 +1,15 @@
 import { FC } from 'react';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import dayjs, { Dayjs } from 'dayjs';
-import { trainingActions, trainingSelectors } from '@redux/slices';
-import { CustomModal } from '@components/modals';
-import { Button, Col, Row, Typography } from 'antd';
-import { formatDate } from '@utils/format-date';
 import { CloseOutlined } from '@ant-design/icons';
 import { DateFormat, Training } from '@common-types/training';
 import { TrainingsList } from '@components/calendar';
-import { useModalPosition } from '@hooks/useModalPosition.ts';
+import { ClickableDiv } from '@components/clickable-div';
+import { CustomModal } from '@components/modals';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { useModalPosition } from '@hooks/use-modal-position.ts';
+import { trainingActions, trainingSelectors } from '@redux/slices';
+import { formatDate } from '@utils/format-date';
+import { Button, Col, Row, Typography } from 'antd';
+import dayjs, { Dayjs } from 'dayjs';
 
 export const CreateTrainingModal: FC<Props> = (props) => {
     const { date, idChooseModal, id, trainings } = props;
@@ -42,11 +43,17 @@ export const CreateTrainingModal: FC<Props> = (props) => {
             width={312}
             isOpen={isOpen}
         >
-            <div data-test-id='modal-create-training' onClick={(e) => e.stopPropagation()}>
-                <Row justify={'space-between'} align={'top'} style={{ marginBottom: '24px' }}>
+            <ClickableDiv dataTestId='modal-create-exercise' onClick={(e) => e.stopPropagation()}>
+                <Row
+                    data-test-id='modal-create-training'
+                    justify='space-between'
+                    align='top'
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ marginBottom: '24px' }}
+                >
                     <Col>
                         <Col>
-                            <Typography.Text strong>
+                            <Typography.Text strong={true}>
                                 {`Тренировка на: ${formatDate({
                                     date,
                                     format: DateFormat.ISO_DATE,
@@ -55,7 +62,7 @@ export const CreateTrainingModal: FC<Props> = (props) => {
                         </Col>
                         <Col>
                             {trainings.length === 0 && (
-                                <Typography.Text type={'secondary'}>
+                                <Typography.Text type='secondary'>
                                     Нет активных тренировок
                                 </Typography.Text>
                             )}
@@ -65,17 +72,21 @@ export const CreateTrainingModal: FC<Props> = (props) => {
                         <Button
                             icon={<CloseOutlined />}
                             onClick={onCloseHandler}
-                            data-test-id={`modal-create-training-button-close`}
+                            data-test-id='modal-create-training-button-close'
                         />
                     </Col>
                 </Row>
 
-                <TrainingsList idChooseModal={idChooseModal} isEditable trainings={trainings} />
+                <TrainingsList
+                    idChooseModal={idChooseModal}
+                    isEditable={true}
+                    trainings={trainings}
+                />
 
                 <Button
                     style={{ marginTop: '20px' }}
-                    type={'primary'}
-                    block
+                    type='primary'
+                    block={true}
                     disabled={isPastOrToday || isAllSelectedTrainings}
                     onClick={onOkHandler}
                 >
@@ -86,7 +97,7 @@ export const CreateTrainingModal: FC<Props> = (props) => {
                         ? 'Создать тренировку'
                         : 'Добавить тренировку'}
                 </Button>
-            </div>
+            </ClickableDiv>
         </CustomModal>
     );
 };

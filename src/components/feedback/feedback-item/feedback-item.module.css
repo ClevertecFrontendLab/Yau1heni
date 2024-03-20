@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     gap: var(--gap-s);
-    margin-right:  var(--gap-s);
+    margin-right: var(--gap-s);
 }
 
 .fullName {

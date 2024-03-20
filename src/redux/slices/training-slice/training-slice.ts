@@ -1,6 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
-import { trainingServices } from '@services/training-services';
+import { push } from 'redux-first-history';
+import { Paths } from '@common-types/routes';
 import {
     ChangeTrainingPayload,
     DateFormat,
@@ -10,8 +9,9 @@ import {
     TrainingList,
     TrainingPayload,
 } from '@common-types/training';
-import { push } from 'redux-first-history';
-import { Paths } from '@common-types/routes';
+import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { trainingServices } from '@services/training-services';
 import { formatDate } from '@utils/format-date';
 
 export const emptyExercise = {
@@ -26,7 +26,7 @@ const initialState: TrainingInitialState = {
     trainings: [],
     trainingsList: [],
     selectedTraining: '',
-    exercises: { ['empty']: [emptyExercise] },
+    exercises: { empty: [emptyExercise] },
     date: '',
     editedExercise: [],
 
@@ -81,7 +81,7 @@ const slice = createSlice({
             state.exercises = { [action.payload.trainingType]: [...action.payload.exercises] };
         },
         clearExercises(state) {
-            state.exercises = { ['empty']: [emptyExercise] };
+            state.exercises = { empty: [emptyExercise] };
         },
     },
 
@@ -175,7 +175,9 @@ export const getTrainings = createAppAsyncThunk<Training[], void>(
     async (_, { dispatch, rejectWithValue }) => {
         try {
             const res = await trainingServices.getTraining();
+
             dispatch(push(Paths.CALENDAR));
+
             return res.data;
         } catch (e) {
             return rejectWithValue(e);
@@ -188,6 +190,7 @@ export const getTrainingList = createAppAsyncThunk<TrainingList[], void>(
     async (_, { rejectWithValue }) => {
         try {
             const res = await trainingServices.getTrainingList();
+
             return res.data;
         } catch (e) {
             return rejectWithValue(e);
@@ -195,16 +198,19 @@ export const getTrainingList = createAppAsyncThunk<TrainingList[], void>(
     },
 );
 
-export const createTraining = createAppAsyncThunk<void, TrainingPayload>(
+export const createTraining = createAppAsyncThunk<Training, TrainingPayload>(
     'training/createTraining',
     async (data, { dispatch, rejectWithValue }) => {
         const formatedDate = formatDate({ date: data.date, format: DateFormat.ISO_DATE });
         const openPopoverId = `create-modal-${formatedDate}`;
 
         try {
-            await trainingServices.createTraining(data);
+            const res = await trainingServices.createTraining(data);
+
             dispatch(getTrainings());
             dispatch(trainingActions.setOpenPopoverId({ openPopoverId }));
+
+            return res.data;
         } catch (e) {
             return rejectWithValue(e);
         }
@@ -212,20 +218,23 @@ export const createTraining = createAppAsyncThunk<void, TrainingPayload>(
 );
 
 export const editTraining = createAppAsyncThunk<
-    void,
+    Training,
     ChangeTrainingPayload & { isMobile?: boolean }
 >('training/editTraining', async (data, { dispatch, rejectWithValue }) => {
     const formatedDate = formatDate({ date: data.payload.date, format: DateFormat.ISO_DATE });
     const openPopoverId = `create-modal-${formatedDate}`;
 
     try {
-        await trainingServices.editTraining(data);
+        const res = await trainingServices.editTraining(data);
+
         dispatch(getTrainings());
         dispatch(
             trainingActions.setOpenPopoverId({
                 openPopoverId: data.isMobile ? 'create-modal' : `${openPopoverId}`,
             }),
         );
+
+        return res.data;
     } catch (e) {
         return rejectWithValue(e);
     }

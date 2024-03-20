@@ -13,5 +13,5 @@ export const PrivateRoutes = () => {
 
     const isAuth = isAccessTokenFromLS || isAccessTokenFromState;
 
-    return isAuth ? <Outlet /> : <Navigate to={Paths.AUTH} replace />;
+    return isAuth ? <Outlet /> : <Navigate to={Paths.AUTH} replace={true} />;
 };

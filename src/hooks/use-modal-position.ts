@@ -1,5 +1,5 @@
-import { Dayjs } from 'dayjs';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { Dayjs } from 'dayjs';
 
 const NO_OFFSET = '0';
 const POSITION_CENTER = '50%';
@@ -10,7 +10,9 @@ export const useModalPosition = (date: Dayjs) => {
     const isSunday = date.day() === SUNDAY;
 
     let top = NO_OFFSET;
-    let left, right, transform;
+    let left;
+    let right;
+    let transform;
 
     if (isMobile) {
         top = POSITION_CENTER;

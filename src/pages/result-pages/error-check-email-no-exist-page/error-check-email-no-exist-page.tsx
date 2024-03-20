@@ -1,10 +1,11 @@
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { useLocation } from 'react-router-dom';
 import { Paths } from '@common-types/routes';
 import { AuthContainer } from '@components/auth';
-import styles from '../result-pages.module.css';
-import { Button, Result } from 'antd';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { navigateTo } from '@utils/navigate-to';
-import { useLocation } from 'react-router-dom';
+import { Button, Result } from 'antd';
+
+import styles from '../result-pages.module.css';
 
 export const ErrorCheckEmailNoExistPage = () => {
     const dispatch = useAppDispatch();
@@ -22,9 +23,9 @@ export const ErrorCheckEmailNoExistPage = () => {
                 subTitle='Мы не нашли в базе вашего e-mail. Попробуйте войти с другим e-mail.'
                 extra={[
                     <Button
-                        type={'primary'}
+                        type='primary'
                         onClick={navigateToLoginHandler}
-                        block
+                        block={true}
                         key='check-retry-button'
                         data-test-id='check-retry-button'
                     >

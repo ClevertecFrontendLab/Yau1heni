@@ -1,17 +1,18 @@
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { Button, Form, Row } from 'antd';
-import { useEffect, useState } from 'react';
-import { trainingActions, trainingSelectors } from '@redux/slices';
+import { Fragment, useEffect, useState } from 'react';
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
-import { AddExerciseItem } from './add-exercise-item/add-exercise-item.tsx';
-import { emptyExercises } from '@constants/data/empty-exercise.ts';
 import { Exercise } from '@common-types/training';
+import { emptyExercises } from '@constants/data/empty-exercise.ts';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { trainingActions, trainingSelectors } from '@redux/slices';
+import { Button, Form, Row } from 'antd';
+
+import { AddExerciseItem } from './add-exercise-item/add-exercise-item.tsx';
 
 export const AddExercisesFormList = () => {
     const dispatch = useAppDispatch();
     const [form] = Form.useForm();
 
-    const [checked, setChecked] = useState<number[]>([]);
+    const [exerciseChecked, setExerciseChecked] = useState<number[]>([]);
 
     const selectedTraining = useAppSelector(trainingSelectors.selectedTraining);
     const exercises = useAppSelector(trainingSelectors.exercises);
@@ -29,12 +30,12 @@ export const AddExercisesFormList = () => {
 
     const handleFormValuesChange = (_: void, allValues: FormListFieldData) => {
         const checkedIndexes = allValues.items.flatMap((el, index) => (el.checked ? index : []));
-        setChecked(checkedIndexes);
 
-        const exercisesWithoutCheckedField = allValues.items.map((exercise) => {
-            delete exercise.checked;
-            return exercise;
-        });
+        setExerciseChecked(checkedIndexes);
+
+        const exercisesWithoutCheckedField = allValues.items.map(
+            ({ checked, ...exercise }) => exercise,
+        );
 
         dispatch(
             trainingActions.setExercises({
@@ -57,7 +58,7 @@ export const AddExercisesFormList = () => {
         >
             <Form.List name='items'>
                 {(fields, { add, remove }) => (
-                    <>
+                    <Fragment>
                         {fields?.map((field) => (
                             <AddExerciseItem field={field} key={field.key} />
                         ))}
@@ -66,23 +67,23 @@ export const AddExercisesFormList = () => {
                                 <Button
                                     onClick={() => add(emptyExercises)}
                                     icon={<PlusOutlined />}
-                                    type={'link'}
+                                    type='link'
                                 >
                                     Добавить ещё
                                 </Button>
                             </Form.Item>
                             <Form.Item>
                                 <Button
-                                    onClick={() => remove(checked)}
+                                    onClick={() => remove(exerciseChecked)}
                                     icon={<CloseOutlined />}
-                                    disabled={checked?.length === 0}
-                                    type={'text'}
+                                    disabled={exerciseChecked?.length === 0}
+                                    type='text'
                                 >
                                     Удалить
                                 </Button>
                             </Form.Item>
                         </Row>
-                    </>
+                    </Fragment>
                 )}
             </Form.List>
         </Form>
@@ -90,5 +91,5 @@ export const AddExercisesFormList = () => {
 };
 
 type FormListFieldData = {
-    items: Exercise & { checked?: boolean }[];
+    items: Exercise & Array<{ checked?: boolean }>;
 };

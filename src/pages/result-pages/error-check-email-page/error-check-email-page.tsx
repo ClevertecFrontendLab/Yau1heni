@@ -1,7 +1,8 @@
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { AuthContainer } from '@components/auth';
-import { Button, Result } from 'antd';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { retryCheckEmail } from '@redux/slices';
+import { Button, Result } from 'antd';
+
 import styles from '../result-pages.module.css';
 
 export const ErrorCheckEmailPage = () => {
@@ -20,7 +21,7 @@ export const ErrorCheckEmailPage = () => {
                 subTitle='Произошла ошибка, попробуйте отправить форму ещё раз.'
                 extra={[
                     <Button
-                        type={'primary'}
+                        type='primary'
                         onClick={retryCheckEmailHandler}
                         key='check-back-button'
                         data-test-id='check-back-button'

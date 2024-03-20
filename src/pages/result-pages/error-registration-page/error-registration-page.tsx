@@ -1,8 +1,9 @@
-import styles from '../result-pages.module.css';
-import { Button, Result } from 'antd';
 import { AuthContainer } from '@components/auth';
-import { retryRegistration } from '@redux/slices';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { retryRegistration } from '@redux/slices';
+import { Button, Result } from 'antd';
+
+import styles from '../result-pages.module.css';
 
 export const ErrorRegistrationPage = () => {
     const dispatch = useAppDispatch();
@@ -20,9 +21,9 @@ export const ErrorRegistrationPage = () => {
                 subTitle='Что-то пошло не так и ваша регистрация не завершилась. Попробуйте ещё раз.'
                 extra={[
                     <Button
-                        type={'primary'}
+                        type='primary'
                         onClick={retryRegistrationHandler}
-                        block
+                        block={true}
                         key='registration-retry-button'
                         data-test-id='registration-retry-button'
                     >

@@ -1,20 +1,25 @@
-import { Button, Layout, Menu } from 'antd';
-import styles from './sidebar-desktop.module.css';
-import ShortLogo from '@assets/icons/short-logo.svg?react';
-import Logo from '@assets/icons/logo.svg?react';
-import Exit from '@assets/icons/exit.svg?react';
 import { FC } from 'react';
+import { push } from 'redux-first-history';
+import Exit from '@assets/icons/exit.svg?react';
+import Logo from '@assets/icons/logo.svg?react';
+import ShortLogo from '@assets/icons/short-logo.svg?react';
+import { PageName, Paths } from '@common-types/routes';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { getTrainings } from '@redux/slices';
+import { Button, Layout, Menu } from 'antd';
+
 import { itemsSideBar } from '../data/items.tsx';
 import { PropsSidebarDesktop } from '../types/types.ts';
-import { getTrainings } from '@redux/slices';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
-import { PageName } from '@common-types/routes';
+
+import styles from './sidebar-desktop.module.css';
 
 export const SidebarDesktop: FC<PropsSidebarDesktop> = ({ isCollapsed, logout }) => {
     const dispatch = useAppDispatch();
 
     const pageTurnHandler = (type: string) => {
+        alert(type);
         if (type === PageName.CALENDAR) dispatch(getTrainings());
+        if (type === PageName.PROFILE) dispatch(push(Paths.PROFILE));
     };
 
     return (
@@ -23,7 +28,7 @@ export const SidebarDesktop: FC<PropsSidebarDesktop> = ({ isCollapsed, logout })
             collapsedWidth={64}
             trigger={null}
             theme='light'
-            collapsible
+            collapsible={true}
             collapsed={isCollapsed}
         >
             <div className={styles.logo}>

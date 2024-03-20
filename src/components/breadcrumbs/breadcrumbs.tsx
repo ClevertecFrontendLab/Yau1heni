@@ -1,7 +1,8 @@
-import { Breadcrumb } from 'antd';
-import styles from './breadcrumbs.module.css';
 import { Link } from 'react-router-dom';
-import { useBreadcrumbs } from '@hooks/useBreadcrumbs.ts';
+import { useBreadcrumbs } from '@hooks/use-breadcrumbs.ts';
+import { Breadcrumb } from 'antd';
+
+import styles from './breadcrumbs.module.css';
 
 export const Breadcrumbs = () => {
     const { breadcrumbs } = useBreadcrumbs();

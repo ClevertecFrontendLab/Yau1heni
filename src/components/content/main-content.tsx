@@ -1,10 +1,12 @@
-import { CardItem } from './card-item/card-item.tsx';
-import { Col, Row, Typography } from 'antd';
-import styles from './main-content.module.css';
-import { itemsCards } from './card-item/data/items.tsx';
+import { PageName } from '@common-types/routes';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { getTrainings } from '@redux/slices';
-import { PageName } from '@common-types/routes';
+import { Col, Row, Typography } from 'antd';
+
+import { CardItem } from './card-item/card-item.tsx';
+import { itemsCards } from './card-item/data/items.tsx';
+
+import styles from './main-content.module.css';
 
 export const MainContent = () => {
     const dispatch = useAppDispatch();

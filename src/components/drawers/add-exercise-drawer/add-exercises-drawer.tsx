@@ -1,11 +1,12 @@
-import { Badge, Button, Drawer, Row, Typography } from 'antd';
 import { CloseOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { ColorBadge, DateFormat } from '@common-types/training';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { trainingActions, trainingSelectors } from '@redux/slices';
 import { formatDate } from '@utils/format-date';
-import { AddExercisesFormList } from './add-exercises-form-list/add-exercises-form-list.tsx';
+import { Badge, Button, Drawer, Row, Typography } from 'antd';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+
+import { AddExercisesFormList } from './add-exercises-form-list/add-exercises-form-list.tsx';
 
 export const AddExercisesDrawer = () => {
     const dispatch = useAppDispatch();
@@ -39,12 +40,12 @@ export const AddExercisesDrawer = () => {
             }
             data-test-id='modal-drawer-right'
         >
-            <Row justify={'space-between'}>
+            <Row justify='space-between'>
                 <Badge
-                    text={<Typography.Text type={'secondary'}>{selectedTraining}</Typography.Text>}
+                    text={<Typography.Text type='secondary'>{selectedTraining}</Typography.Text>}
                     color={ColorBadge[selectedTraining as keyof typeof ColorBadge]}
                 />
-                <Typography.Text type={'secondary'}>{formatedDate}</Typography.Text>
+                <Typography.Text type='secondary'>{formatedDate}</Typography.Text>
             </Row>
 
             <div style={{ marginTop: '24px' }}>

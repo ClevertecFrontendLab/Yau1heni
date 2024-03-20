@@ -1,13 +1,14 @@
-import { Button, Col, Row, Typography } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import styles from './header.module.css';
+import { Button, Col, Row, Typography } from 'antd';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+
+import styles from './header.module.css';
 
 export const Header = () => {
     const { xs } = useBreakpoint();
 
     return (
-        <div className={styles.header} >
+        <div className={styles.header}>
             <Row justify='space-between' gutter={16}>
                 <Col span={20}>
                     <Typography.Text className={styles.text}>

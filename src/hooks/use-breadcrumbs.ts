@@ -1,5 +1,5 @@
-import { Paths } from '@common-types/routes';
 import { useLocation } from 'react-router-dom';
+import { Paths } from '@common-types/routes';
 
 enum BreadcrumbItem {
     MAIN = 'Главная',

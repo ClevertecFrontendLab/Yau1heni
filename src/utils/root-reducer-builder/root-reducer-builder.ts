@@ -1,6 +1,5 @@
 import { appReducer, authReducer, feedbackReducer, trainingReducer } from '@redux/slices';
 import { ReducersMapObject } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
 
 const reducers = {
     app: appReducer,
@@ -9,9 +8,7 @@ const reducers = {
     training: trainingReducer,
 };
 
-export const rootReducerBuilder = (additionalReducers: ReducersMapObject) => {
-    return combineReducers({
-        ...reducers,
-        ...additionalReducers,
-    });
-};
+export const rootReducerBuilder = (additionalReducers: ReducersMapObject) => ({
+    ...reducers,
+    ...additionalReducers,
+});

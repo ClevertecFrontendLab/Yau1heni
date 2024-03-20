@@ -10,7 +10,7 @@
 }
 @media (max-width: 576px) {
     :global .ant-picker-calendar {
-       background: var(--neutral-gray-1);
+        background: var(--neutral-gray-1);
         margin-bottom: calc(100vh - 400px);
     }
     :global .ant-picker-cell :global .ant-picker-cell-inner {
@@ -32,5 +32,3 @@
         border: 2px solid var(--primary-light-4);
     }
 }
-
-

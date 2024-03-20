@@ -1,5 +1,5 @@
 .backgroundImageContainer {
-    background: url("@assets/image/enter-page-light.png") center/cover;
+    background: url('@assets/image/enter-page-light.png') center/cover;
 }
 
 .blur {
@@ -8,4 +8,3 @@
     height: 100vh;
     width: 100%;
 }
-

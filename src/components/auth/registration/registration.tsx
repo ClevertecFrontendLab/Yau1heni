@@ -1,12 +1,13 @@
-import styles from './registration.module.css';
-import { Button, Form, Input } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { useLocation } from 'react-router-dom';
+import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
 import { AuthPayload } from '@common-types/auth';
-import { registration } from '@redux/slices';
 import { VALIDATE_PASSWORD_SCHEMA, validationMessages } from '@constants/validation.ts';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { registration } from '@redux/slices';
+import { Button, Form, Input } from 'antd';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+
+import styles from './registration.module.css';
 
 export const Registration = () => {
     const dispatch = useAppDispatch();
@@ -21,13 +22,16 @@ export const Registration = () => {
         window.location.href = 'https://marathon-api.clevertec.ru/auth/google';
     };
 
+    const renderPasswordIcon = (visible: boolean) =>
+        visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />;
+
     return (
         <Form onFinish={onFinishHandler}>
             <Form.Item name='email' rules={[{ required: true, message: '' }]}>
                 <Input
-                    addonBefore={'e-mail: '}
+                    addonBefore='e-mail: '
                     autoComplete='on'
-                    size={'large'}
+                    size='large'
                     data-test-id='registration-email'
                 />
             </Form.Item>
@@ -44,8 +48,8 @@ export const Registration = () => {
             >
                 <Input.Password
                     placeholder='Пароль'
-                    size={'large'}
-                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                    size='large'
+                    iconRender={renderPasswordIcon}
                     autoComplete='off'
                     data-test-id='registration-password'
                 />
@@ -64,6 +68,7 @@ export const Registration = () => {
                             if (!value || getFieldValue('password') === value) {
                                 return Promise.resolve();
                             }
+
                             return Promise.reject(
                                 new Error(validationMessages.CONFIRM_PASSWORD_ERROR),
                             );
@@ -73,8 +78,8 @@ export const Registration = () => {
             >
                 <Input.Password
                     placeholder='Повторите пароль'
-                    size={'large'}
-                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                    size='large'
+                    iconRender={renderPasswordIcon}
                     autoComplete='off'
                     data-test-id='registration-confirm-password'
                 />
@@ -82,14 +87,14 @@ export const Registration = () => {
             <Form.Item>
                 <div className={styles.buttonsContainer}>
                     <Button
-                        type={'primary'}
+                        type='primary'
                         htmlType='submit'
                         data-test-id='registration-submit-button'
                     >
                         Войти
                     </Button>
                     <Button
-                        type={'text'}
+                        type='text'
                         onClick={authGoogleHandler}
                         icon={sm && <GooglePlusOutlined />}
                     >

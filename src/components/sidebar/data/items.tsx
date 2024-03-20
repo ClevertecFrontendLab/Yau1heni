@@ -1,6 +1,7 @@
 import { CalendarTwoTone, HeartFilled, ProfileOutlined, TrophyFilled } from '@ant-design/icons';
-import { MenuItem } from '../types/types.ts';
 import { PageName } from '@common-types/routes';
+
+import { MenuItem } from '../types/types.ts';
 
 export const itemsSideBar: MenuItem[] = [
     {
@@ -19,7 +20,7 @@ export const itemsSideBar: MenuItem[] = [
         label: 'Достижения',
     },
     {
-        key: '4',
+        key: PageName.PROFILE,
         icon: <ProfileOutlined style={{ color: '#003a8c' }} />,
         label: 'Профиль',
     },
@@ -39,7 +40,7 @@ export const itemsSideBarMobile: MenuItem[] = [
         label: 'Достижения',
     },
     {
-        key: '4',
+        key: PageName.PROFILE,
         label: 'Профиль',
     },
 ];

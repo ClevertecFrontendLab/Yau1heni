@@ -42,7 +42,7 @@
         margin-bottom: var(--gap-xl);
         height: 50px;
         width: 203px;
-     }
+    }
     :global .ant-tabs-tab {
         width: 148px;
     }
