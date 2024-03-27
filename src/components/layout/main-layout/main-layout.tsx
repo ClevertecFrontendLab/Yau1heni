@@ -1,15 +1,12 @@
 import { FC, PropsWithChildren, useState } from 'react';
-import { Paths } from '@common-types/routes';
 import { Breadcrumbs } from '@components/breadcrumbs';
 import { Footer } from '@components/footer';
 import { Header } from '@components/header';
-import { ErrorModal } from '@components/modals';
-import { SidebarDesktop, SidebarMobile } from '@components/sidebar';
+import { ErrorServerModal } from '@components/modals';
+import { Sidebar } from '@components/sidebar';
 import { TrapezoidButton } from '@components/trapezoid-button';
-import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { authActions, trainingActions, trainingSelectors } from '@redux/slices';
-import { navigateTo } from '@utils/navigate-to';
+import { trainingActions, trainingSelectors } from '@redux/slices';
 import { Layout } from 'antd';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
@@ -32,23 +29,9 @@ export const MainLayout: FC<Props> = (props) => {
         setCollapsed(!collapsed);
     };
 
-    const logoutHandler = () => {
-        localStorage.removeItem(LocalStorageKeys.ACCESS_TOKEN);
-        dispatch(authActions.setAccessToken({ accessToken: null }));
-        navigateTo({ dispatch, toPath: Paths.AUTH });
-    };
-
     return (
         <Layout>
-            {xs ? (
-                <SidebarMobile
-                    collapsed={!collapsed}
-                    toggleCollapsed={toggleCollapsed}
-                    logout={logoutHandler}
-                />
-            ) : (
-                <SidebarDesktop isCollapsed={collapsed} logout={logoutHandler} />
-            )}
+            <Sidebar collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
             <Layout>
                 <Breadcrumbs />
                 {isWithHeader && <Header />}
@@ -63,7 +46,7 @@ export const MainLayout: FC<Props> = (props) => {
                             />
                         )}
                         {children}
-                        <ErrorModal clearError={clearError} isError={isError} />
+                        <ErrorServerModal clearError={clearError} isError={isError} />
                     </Layout.Content>
                     {isWithFooter && (
                         <Layout.Footer>

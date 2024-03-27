@@ -1,4 +1,10 @@
-import { appReducer, authReducer, feedbackReducer, trainingReducer } from '@redux/slices';
+import {
+    appReducer,
+    authReducer,
+    feedbackReducer,
+    profileReducer,
+    trainingReducer,
+} from '@redux/slices';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 
 const reducers = {
@@ -6,6 +12,7 @@ const reducers = {
     auth: authReducer,
     feedback: feedbackReducer,
     training: trainingReducer,
+    profile: profileReducer,
 };
 
 export const rootReducerBuilder = (additionalReducers: ReducersMapObject) => ({

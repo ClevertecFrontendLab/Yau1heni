@@ -23,7 +23,7 @@ export const itemsCards = [
         title: 'Заполнить профиль',
         icon: <IdcardOutlined style={{ color: '#003a8c' }} />,
         text: 'Профиль',
-        dataTestId: '',
+        dataTestId: 'menu-button-profile',
         toPath: Paths.MAIN,
     },
 ];

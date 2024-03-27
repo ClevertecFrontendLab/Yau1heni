@@ -8,7 +8,12 @@ import { itemsSideBarMobile } from '../data/items.tsx';
 
 import styles from './sidebar-mobile.module.css';
 
-export const SidebarMobile: FC<PropsSidebarMobile> = ({ toggleCollapsed, collapsed, logout }) => (
+export const SidebarMobile: FC<PropsSidebarMobile> = ({
+    toggleCollapsed,
+    collapsed,
+    logout,
+    onClick,
+}) => (
     <div>
         <Layout.Sider
             collapsedWidth={0}
@@ -30,13 +35,12 @@ export const SidebarMobile: FC<PropsSidebarMobile> = ({ toggleCollapsed, collaps
                 <Logo height={18} width={72} />
             </div>
 
-            <Menu items={itemsSideBarMobile} />
+            <Menu onClick={({ key }) => onClick(key)} items={itemsSideBarMobile} />
 
             <TrapezoidButton
                 collapsed={collapsed}
                 toggleCollapsed={toggleCollapsed}
                 dataTestId='sider-switch-mobile'
-                /* style={{left: '106px'}} */
             />
 
             {!collapsed && (

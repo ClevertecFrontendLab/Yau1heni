@@ -1,0 +1,19 @@
+.profileContent {
+    max-width: 480px;
+}
+
+.personalInfo {
+    display: flex;
+    margin-bottom: var(--gap-xl);
+}
+
+.button {
+    margin-top: var(--gap-4xl);
+}
+
+@media (max-width: 576px) {
+    .personalInfo {
+        flex-direction: column-reverse;
+        margin-bottom: var(--gap-l);
+    }
+}

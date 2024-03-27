@@ -20,12 +20,12 @@ export enum Paths {
     FEEDBACKS = '/feedbacks',
     CALENDAR = '/calendar',
     PROFILE = '/profile',
+    SETTINGS = '/settings',
 
     NOT_FOUND = '/not-found',
 }
 
 export enum PageName {
     CALENDAR = 'Календарь',
-    TRAINING = 'Тренировка',
     PROFILE = 'Профиль',
 }

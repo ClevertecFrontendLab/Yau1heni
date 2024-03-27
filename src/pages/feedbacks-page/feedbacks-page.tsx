@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { FeedbackItem, NoFeedback } from '@components/feedback';
 import { MainLayout } from '@components/layout';
 import { Loader } from '@components/loader';
-import { ErrorModal, FeedbackCreateModal, FeedbackResultModal } from '@components/modals';
+import { ErrorServerModal, FeedbackCreateModal, FeedbackResultModal } from '@components/modals';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { appSelectors, feedbackActions, feedbackSelectors, getFeedbacks } from '@redux/slices';
 import { Button } from 'antd';
@@ -70,7 +70,7 @@ export const FeedbacksPage = () => {
             )}
 
             <FeedbackCreateModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-            <ErrorModal clearError={clearError} isError={isError} />
+            <ErrorServerModal clearError={clearError} isError={isError} />
             <FeedbackResultModal setIsModalOpen={setIsModalOpen} />
         </MainLayout>
     );

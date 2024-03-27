@@ -4,9 +4,9 @@ import { Paths } from '@common-types/routes';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { Button, Modal, Result } from 'antd';
 
-import { maskStyle } from '../common-styles.ts';
+import { maskStyle } from '../../common-styles.ts';
 
-export const ErrorModal: FC<Props> = ({ isError, clearError }) => {
+export const ErrorServerModal: FC<Props> = ({ isError, clearError }) => {
     const dispatch = useAppDispatch();
 
     const okHandler = () => {
