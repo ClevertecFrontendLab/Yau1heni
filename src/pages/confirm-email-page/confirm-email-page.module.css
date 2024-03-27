@@ -16,7 +16,7 @@
 }
 
 .characterError {
-    border: 1px solid var(--character-light-error);;
+    border: 1px solid var(--character-light-error);
 }
 
 .characterInactive {

@@ -1,8 +1,9 @@
-import styles from '../result-pages.module.css';
-import { Button, Result } from 'antd';
 import { AuthContainer } from '@components/auth';
-import { retryChangePassword } from '@redux/slices';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { retryChangePassword } from '@redux/slices';
+import { Button, Result } from 'antd';
+
+import styles from '../result-pages.module.css';
 
 export const ErrorChangePasswordPage = () => {
     const dispatch = useAppDispatch();
@@ -20,9 +21,9 @@ export const ErrorChangePasswordPage = () => {
                 subTitle='Что-то пошло не так. Попробуйте ещё раз.'
                 extra={[
                     <Button
-                        type={'primary'}
+                        type='primary'
                         onClick={retryRegistrationHandler}
-                        block
+                        block={true}
                         key='change-retry-button'
                         data-test-id='change-retry-button'
                     >

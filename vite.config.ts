@@ -1,15 +1,17 @@
 import path from 'path';
 
+/* eslint-disable import/no-extraneous-dependencies */
 import react from '@vitejs/plugin-react';
-import svgr from 'vite-plugin-svgr';
 import { defineConfig } from 'vite';
+/* eslint-enable  import/no-extraneous-dependencies */
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
     plugins: [
+        react(),
         svgr({
             include: '**/*.svg?react',
         }),
-        react(),
     ],
     css: {
         preprocessorOptions: {
@@ -22,6 +24,7 @@ export default defineConfig({
         host: true,
         port: 3000,
     },
+
     resolve: {
         alias: {
             '@public': path.resolve(__dirname, 'public'),
@@ -36,5 +39,5 @@ export default defineConfig({
             '@assets': path.resolve(__dirname, 'src/assets'),
             '@services': path.resolve(__dirname, 'src/services'),
         },
-    },
+    } /* base: '/Yau1heni/', */,
 });

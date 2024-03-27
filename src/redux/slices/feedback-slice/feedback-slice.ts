@@ -1,17 +1,17 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { StatusCode } from '@common-types/auth';
 import {
     CreationStatus,
-    FeedbacksInitialState,
     FeedbackPayload,
+    FeedbacksInitialState,
     FeedbacksResponse,
     Rating,
 } from '@common-types/feedback';
+import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
 import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
+import { authActions } from '@redux/slices';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { feedbackServices } from '@services/feedback-services';
 import { isAxiosError } from 'axios';
-import { StatusCode } from '@common-types/auth';
-import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
-import { authActions } from '@redux/slices';
 
 const initialState: FeedbacksInitialState = {
     feedbacks: [],
@@ -77,6 +77,7 @@ export const getFeedbacks = createAppAsyncThunk<FeedbacksResponse, void>(
     async (_, { rejectWithValue }) => {
         try {
             const res = await feedbackServices.getFeedbacks();
+
             return res.data;
         } catch (e) {
             return rejectWithValue(e);

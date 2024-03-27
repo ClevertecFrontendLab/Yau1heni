@@ -1,10 +1,11 @@
-import styles from '../result-pages.module.css';
-import { Button, Result } from 'antd';
-import { AuthContainer } from '@components/auth';
 import { useDispatch } from 'react-redux';
-import { Paths } from '@common-types/routes';
-import { navigateTo } from '@utils/navigate-to';
 import { useLocation } from 'react-router-dom';
+import { Paths } from '@common-types/routes';
+import { AuthContainer } from '@components/auth';
+import { navigateTo } from '@utils/navigate-to';
+import { Button, Result } from 'antd';
+
+import styles from '../result-pages.module.css';
 
 export const SuccessPage = () => {
     const dispatch = useDispatch();
@@ -22,9 +23,9 @@ export const SuccessPage = () => {
                 subTitle='Регистрация прошла успешно. Зайдите в приложение, используя свои e-mail и пароль.'
                 extra={[
                     <Button
-                        type={'primary'}
+                        type='primary'
                         onClick={navigateToLoginHandler}
-                        block
+                        block={true}
                         key='registration-enter-button'
                         data-test-id='registration-enter-button'
                     >

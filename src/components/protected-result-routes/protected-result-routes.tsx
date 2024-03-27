@@ -11,8 +11,9 @@ export const ProtectedResultRoutes = () => {
                 location.state.from.startsWith(Paths.RESULT)
             );
         }
+
         return false;
     };
 
-    return isAvailable() ? <Outlet /> : <Navigate to={Paths.AUTH} replace />;
+    return isAvailable() ? <Outlet /> : <Navigate to={Paths.AUTH} replace={true} />;
 };

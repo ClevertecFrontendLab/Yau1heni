@@ -1,14 +1,15 @@
-import styles from './login.module.css';
-import { Button, Checkbox, Form, Input, Row } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CheckboxChangeEvent } from 'antd/es/checkbox';
+import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
 import { AuthPayload } from '@common-types/auth';
-import { authActions, authSelectors, checkEmail, login } from '@redux/slices';
 import { VALIDATE_PASSWORD_SCHEMA, validationMessages } from '@constants/validation.ts';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { authActions, authSelectors, checkEmail, login } from '@redux/slices';
+import { Button, Checkbox, Form, Input, Row } from 'antd';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+
+import styles from './login.module.css';
 
 export const Login = () => {
     const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ export const Login = () => {
     const onCheckEmailHandler = () => {
         if (form.getFieldValue('email')) {
             const formValues = form.getFieldsValue(['email']);
+
             dispatch(checkEmail({ email: formValues.email, pathname }));
         } else {
             setDisabledConfirm(true);
@@ -36,12 +38,16 @@ export const Login = () => {
 
     const formChangeHandler = () => {
         const hasErrors = form.getFieldsError(['email']).some(({ errors }) => errors.length);
+
         setDisabledConfirm(hasErrors);
     };
 
     const authGoogleHandler = () => {
         window.location.href = 'https://marathon-api.clevertec.ru/auth/google';
     };
+
+    const renderPasswordIcon = (visible: boolean) =>
+        visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />;
 
     return (
         <Form
@@ -61,8 +67,8 @@ export const Login = () => {
                 ]}
             >
                 <Input
-                    addonBefore={'e-mail: '}
-                    size={'large'}
+                    addonBefore='e-mail: '
+                    size='large'
                     autoComplete='on'
                     data-test-id='login-email'
                 />
@@ -79,14 +85,14 @@ export const Login = () => {
             >
                 <Input.Password
                     placeholder='Пароль'
-                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                    iconRender={renderPasswordIcon}
                     autoComplete='off'
-                    size={'large'}
+                    size='large'
                     data-test-id='login-password'
                 />
             </Form.Item>
 
-            <Row justify={'space-between'} className={styles.remember}>
+            <Row justify='space-between' className={styles.remember}>
                 <Form.Item name='remember' valuePropName='checked'>
                     <Checkbox
                         data-test-id='login-remember'
@@ -99,7 +105,7 @@ export const Login = () => {
                 <Button
                     onClick={onCheckEmailHandler}
                     disabled={disabledConfirm}
-                    type={'link'}
+                    type='link'
                     style={{ textAlign: 'center' }}
                     data-test-id='login-forgot-button'
                 >
@@ -115,7 +121,7 @@ export const Login = () => {
                     <Button
                         onClick={authGoogleHandler}
                         icon={sm && <GooglePlusOutlined />}
-                        type={'text'}
+                        type='text'
                     >
                         Войти через Google
                     </Button>

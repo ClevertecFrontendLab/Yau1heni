@@ -1,12 +1,19 @@
-import { Button, Layout, Menu } from 'antd';
-import styles from './sidebar-mobile.module.css';
-import Logo from '@assets/icons/logo.svg?react';
-import { itemsSideBarMobile } from '../data/items.tsx';
 import { FC } from 'react';
+import Logo from '@assets/icons/logo.svg?react';
 import { PropsSidebarMobile } from '@components/sidebar/types/types.ts';
 import { TrapezoidButton } from '@components/trapezoid-button';
+import { Button, Layout, Menu } from 'antd';
 
-export const SidebarMobile: FC<PropsSidebarMobile> = ({ toggleCollapsed, collapsed, logout }) => (
+import { itemsSideBarMobile } from '../data/items.tsx';
+
+import styles from './sidebar-mobile.module.css';
+
+export const SidebarMobile: FC<PropsSidebarMobile> = ({
+    toggleCollapsed,
+    collapsed,
+    logout,
+    onClick,
+}) => (
     <div>
         <Layout.Sider
             collapsedWidth={0}
@@ -21,20 +28,19 @@ export const SidebarMobile: FC<PropsSidebarMobile> = ({ toggleCollapsed, collaps
                 bottom: 0,
             }}
             theme='light'
-            collapsible
+            collapsible={true}
             collapsed={collapsed}
         >
             <div className={styles.logo}>
                 <Logo height={18} width={72} />
             </div>
 
-            <Menu items={itemsSideBarMobile} />
+            <Menu onClick={({ key }) => onClick(key)} items={itemsSideBarMobile} />
 
             <TrapezoidButton
                 collapsed={collapsed}
                 toggleCollapsed={toggleCollapsed}
-                dataTestId={'sider-switch-mobile'}
-                /*style={{left: '106px'}}*/
+                dataTestId='sider-switch-mobile'
             />
 
             {!collapsed && (

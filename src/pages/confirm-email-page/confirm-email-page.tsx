@@ -1,9 +1,10 @@
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { AuthContainer } from '@components/auth';
-import styles from './confirm-email-page.module.css';
-import { Result, Typography } from 'antd';
 import VerificationInput from 'react-verification-input';
+import { AuthContainer } from '@components/auth';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { authActions, authSelectors, confirmEmail } from '@redux/slices';
+import { Result, Typography } from 'antd';
+
+import styles from './confirm-email-page.module.css';
 
 export const ConfirmEmailPage = () => {
     const dispatch = useAppDispatch();
@@ -12,11 +13,11 @@ export const ConfirmEmailPage = () => {
     const isError = useAppSelector(authSelectors.isErrorConfirmEmail);
     const email = useAppSelector(authSelectors.checkEmail);
 
-    const onCompleteHandler = (code: string) => {
-        dispatch(confirmEmail(code));
+    const onCompleteHandler = (newCode: string) => {
+        dispatch(confirmEmail(newCode));
     };
-    const onChangeHandler = (code: string) => {
-        dispatch(authActions.setConfirmEmail({ code }));
+    const onChangeHandler = (newCode: string) => {
+        dispatch(authActions.setConfirmEmail({ code: newCode }));
     };
 
     const status = isError ? 'error' : 'info';
@@ -37,7 +38,7 @@ export const ConfirmEmailPage = () => {
                 extra={[
                     <VerificationInput
                         value={code}
-                        placeholder={''}
+                        placeholder=''
                         onChange={onChangeHandler}
                         onComplete={onCompleteHandler}
                         classNames={{
@@ -48,7 +49,7 @@ export const ConfirmEmailPage = () => {
                         key='verification-input'
                         inputProps={{ 'data-test-id': 'verification-input' }}
                     />,
-                    <Typography.Text key='text' type={'secondary'}>
+                    <Typography.Text key='text' type='secondary'>
                         Не пришло письмо? Проверьте папку Спам
                     </Typography.Text>,
                 ]}

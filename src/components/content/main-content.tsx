@@ -1,16 +1,20 @@
-import { CardItem } from './card-item/card-item.tsx';
-import { Col, Row, Typography } from 'antd';
-import styles from './main-content.module.css';
-import { itemsCards } from './card-item/data/items.tsx';
+import { push } from 'redux-first-history';
+import { PageName, Paths } from '@common-types/routes';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { getTrainings } from '@redux/slices';
-import { PageName } from '@common-types/routes';
+import { Col, Row, Typography } from 'antd';
+
+import { CardItem } from './card-item/card-item.tsx';
+import { itemsCards } from './card-item/data/items.tsx';
+
+import styles from './main-content.module.css';
 
 export const MainContent = () => {
     const dispatch = useAppDispatch();
 
     const pageTurnHandler = (type: string) => {
         if (type === PageName.CALENDAR) dispatch(getTrainings());
+        if (type === PageName.PROFILE) dispatch(push(Paths.PROFILE));
     };
 
     const cardsList = itemsCards.map((card) => (
@@ -20,7 +24,6 @@ export const MainContent = () => {
                 title={card.title}
                 text={card.text}
                 dataTestId={card.dataTestId}
-                toPath={card.toPath}
                 onclick={() => pageTurnHandler(card.text)}
             />
         </Col>

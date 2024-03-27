@@ -1,13 +1,15 @@
-import { Dayjs } from 'dayjs';
 import { FC } from 'react';
+import { DateFormat, Training } from '@common-types/training';
+import { TrainingsList } from '@components/calendar';
+import { ClickableDiv } from '@components/clickable-div';
+import { ChooseTrainingModal, CreateTrainingModal } from '@components/modals';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
 import { trainingActions } from '@redux/slices';
 import { formatDate } from '@utils/format-date';
 import { Row } from 'antd';
-import { ChooseTrainingModal, CreateTrainingModal } from '@components/modals';
-import { DateFormat, Training } from '@common-types/training';
+import { Dayjs } from 'dayjs';
+
 import styles from './custom-calendar-cell.module.css';
-import { TrainingsList } from '@components/calendar';
 
 export const CustomCalendarCell: FC<Props> = ({ date, allTrainings }) => {
     const dispatch = useAppDispatch();
@@ -28,8 +30,8 @@ export const CustomCalendarCell: FC<Props> = ({ date, allTrainings }) => {
     );
 
     return (
-        <div onClick={handleCellClick} className={styles.cellCalendar}>
-            <Row justify={'end'}>{formatDate({ date, format: 'DD' })}</Row>
+        <ClickableDiv onClick={handleCellClick} className={styles.cellCalendar}>
+            <Row justify='end'>{formatDate({ date, format: 'DD' })}</Row>
             <div className={styles.cellContent}>
                 {trainings.length !== 0 && (
                     <TrainingsList idChooseModal={idChooseModal} trainings={trainings} />
@@ -47,7 +49,7 @@ export const CustomCalendarCell: FC<Props> = ({ date, allTrainings }) => {
                     prevModalId={idCreateModal}
                 />
             </div>
-        </div>
+        </ClickableDiv>
     );
 };
 

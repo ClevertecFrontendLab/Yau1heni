@@ -1,15 +1,18 @@
 import { FC } from 'react';
-import styles from './choose-training-modal.module.css';
-import { Button, Row, Select } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { createTraining, editTraining, trainingActions, trainingSelectors } from '@redux/slices';
-import dayjs, { Dayjs } from 'dayjs';
 import { Training } from '@common-types/training';
-import { optionsListBuilder } from '@utils/options-list-builder';
+import { ClickableDiv } from '@components/clickable-div';
 import { CustomModal } from '@components/modals';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { useModalPosition } from '@hooks/use-modal-position.ts';
+import { createTraining, editTraining, trainingActions, trainingSelectors } from '@redux/slices';
+import { optionsListBuilder } from '@utils/options-list-builder';
+import { Button, Row, Select } from 'antd';
+import dayjs, { Dayjs } from 'dayjs';
+
 import { ExercisesList } from './exercises-list/exercises-list.tsx';
-import { useModalPosition } from '@hooks/useModalPosition.ts';
+
+import styles from './choose-training-modal.module.css';
 
 export const ChooseTrainingModal: FC<Props> = (props) => {
     const { date, idChooseModal, prevModalId, trainings, isMobile = false } = props;
@@ -68,6 +71,8 @@ export const ChooseTrainingModal: FC<Props> = (props) => {
           )
         : [];
 
+    //
+
     return (
         <CustomModal
             top={top}
@@ -77,7 +82,7 @@ export const ChooseTrainingModal: FC<Props> = (props) => {
             width={264}
             isOpen={isOpen}
         >
-            <div data-test-id='modal-create-exercise' onClick={(e) => e.stopPropagation()}>
+            <ClickableDiv dataTestId='modal-create-exercise' onClick={(e) => e.stopPropagation()}>
                 <Row>
                     <Button
                         data-test-id='modal-exercise-training-button-close'
@@ -99,9 +104,9 @@ export const ChooseTrainingModal: FC<Props> = (props) => {
                     <ExercisesList exercises={exercisesList} />
                 </div>
 
-                <Row justify={'center'} gutter={[0, 8]}>
+                <Row justify='center' gutter={[0, 8]}>
                     <Button
-                        type={'text'}
+                        type='text'
                         className={styles.addExercisesButton}
                         onClick={addExerciseHandler}
                         disabled={!selectedTraining}
@@ -109,7 +114,7 @@ export const ChooseTrainingModal: FC<Props> = (props) => {
                         Добавить упражнения
                     </Button>
                     <Button
-                        type={'link'}
+                        type='link'
                         disabled={exercisesList?.length === 0}
                         onClick={saveExerciseHandler}
                         loading={isLoading}
@@ -117,7 +122,7 @@ export const ChooseTrainingModal: FC<Props> = (props) => {
                         {isPastOrToday ? 'Сохранить изменения' : 'Сохранить'}
                     </Button>
                 </Row>
-            </div>
+            </ClickableDiv>
         </CustomModal>
     );
 };

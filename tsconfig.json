@@ -29,7 +29,7 @@
             "@common-types/*": ["./src/common-types/*"],
             "@utils/*": ["./src/utils/*"],
             "@assets/*": ["./src/assets/*"],
-            "@services/*": ["./src/services/*"],
+            "@services/*": ["./src/services/*"]
         },
         "plugins": [
             {
@@ -42,6 +42,6 @@
             }
         ]
     },
-    "include": ["src"],
+    "include": ["src", "cypress"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

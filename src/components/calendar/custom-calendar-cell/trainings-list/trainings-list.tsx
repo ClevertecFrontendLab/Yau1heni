@@ -1,30 +1,31 @@
-import { FC } from 'react';
-import { Badge, Button, Row, Typography } from 'antd';
-import { ColorBadge, Training } from '@common-types/training';
+import { FC, useId } from 'react';
 import { EditOutlined } from '@ant-design/icons';
-import { trainingActions } from '@redux/slices';
+import { ColorBadge, Training } from '@common-types/training';
+import { TrainingListEmpty } from '@components/calendar';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
-import { TrainingListEmpty } from '../training-list-empty/training-list-empty.tsx';
+import { trainingActions } from '@redux/slices';
+import { Badge, Button, Row, Typography } from 'antd';
 
 export const TrainingsList: FC<Props> = (props) => {
     const { isEditable = false, trainings, idChooseModal } = props;
     const dispatch = useAppDispatch();
+    const id = useId();
 
     const onEditTrainingHandler = (training: Training) => {
-        const { name, exercises, _id } = training;
+        const { name, exercises, _id: trainingId } = training;
 
-        dispatch(trainingActions.setExercises({ trainingType: name, exercises: exercises }));
+        dispatch(trainingActions.setExercises({ trainingType: name, exercises }));
         dispatch(trainingActions.setSelectedTraining({ training: name }));
-        dispatch(trainingActions.setTrainingId({ trainingId: _id }));
+        dispatch(trainingActions.setTrainingId({ trainingId }));
         dispatch(trainingActions.setOpenPopoverId({ openPopoverId: idChooseModal }));
     };
 
-    const trainingsListNotEmpty = (isEditable: boolean, trainings: Training[]) =>
-        trainings?.map((training, index) =>
-            isEditable ? (
+    const trainingsListNotEmpty = (isEditableList: boolean, trainingsList: Training[]) =>
+        trainingsList?.map((training, index) =>
+            isEditableList ? (
                 <Row
-                    justify={'space-between'}
-                    key={index}
+                    justify='space-between'
+                    key={`editable-${id}`}
                     onClick={() => onEditTrainingHandler(training)}
                 >
                     <Badge
@@ -46,7 +47,7 @@ export const TrainingsList: FC<Props> = (props) => {
                     />
                 </Row>
             ) : (
-                <Row key={index}>
+                <Row key={`non-editable-${id}`}>
                     <Badge
                         text={
                             <Typography.Text disabled={training.isImplementation}>

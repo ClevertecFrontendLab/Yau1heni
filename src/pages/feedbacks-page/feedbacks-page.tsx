@@ -1,12 +1,13 @@
-import styles from './feedbacks-page.module.css';
-import { useEffect, useState } from 'react';
-import { appSelectors, feedbackActions, feedbackSelectors, getFeedbacks } from '@redux/slices';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { Button } from 'antd';
-import { Loader } from '@components/loader';
-import { MainLayout } from '@components/layout';
-import { ErrorModal, FeedbackCreateModal, FeedbackResultModal } from '@components/modals';
+import { Fragment, useEffect, useState } from 'react';
 import { FeedbackItem, NoFeedback } from '@components/feedback';
+import { MainLayout } from '@components/layout';
+import { Loader } from '@components/loader';
+import { ErrorServerModal, FeedbackCreateModal, FeedbackResultModal } from '@components/modals';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { appSelectors, feedbackActions, feedbackSelectors, getFeedbacks } from '@redux/slices';
+import { Button } from 'antd';
+
+import styles from './feedbacks-page.module.css';
 
 export const FeedbacksPage = () => {
     const dispatch = useAppDispatch();
@@ -51,25 +52,25 @@ export const FeedbacksPage = () => {
             {isEmptyFeedbackList ? (
                 <NoFeedback onClick={setIsModalOpen} />
             ) : (
-                <>
+                <Fragment>
                     <div className={collapsed ? '' : styles.feedbacksContainer}>{feedbackList}</div>
                     <div className={styles.buttonsContainer}>
-                        <Button type={'primary'} onClick={showModal} data-test-id='write-review'>
+                        <Button type='primary' onClick={showModal} data-test-id='write-review'>
                             Написать отзывы
                         </Button>
                         <Button
-                            type={'text'}
+                            type='text'
                             onClick={collapsedHandler}
                             data-test-id='all-reviews-button'
                         >
                             {textButton}
                         </Button>
                     </div>
-                </>
+                </Fragment>
             )}
 
             <FeedbackCreateModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-            <ErrorModal clearError={clearError} isError={isError} />
+            <ErrorServerModal clearError={clearError} isError={isError} />
             <FeedbackResultModal setIsModalOpen={setIsModalOpen} />
         </MainLayout>
     );

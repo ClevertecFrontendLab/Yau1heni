@@ -1,7 +1,7 @@
-import { Button, Card, Typography } from 'antd';
 import { FC, ReactNode } from 'react';
+import { Button, Card, Typography } from 'antd';
+
 import styles from './card-item.module.css';
-import { Paths } from '@common-types/routes';
 
 export const CardItem: FC<Props> = (props) => {
     const { title, text, Icon, dataTestId, onclick } = props;
@@ -22,7 +22,7 @@ export const CardItem: FC<Props> = (props) => {
                     {text}
                 </Button>,
             ]}
-            hoverable
+            hoverable={true}
         >
             <Typography.Text className={styles.text}>{title}</Typography.Text>
         </Card>
@@ -34,6 +34,5 @@ type Props = {
     text: string;
     Icon: ReactNode;
     dataTestId: string;
-    toPath?: Paths;
     onclick: () => void;
 };

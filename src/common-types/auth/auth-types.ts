@@ -36,7 +36,6 @@ export enum StatusCode {
 
 export type AuthInitialState = {
     isRememberMe: boolean;
-    //isLoggedIn: boolean;
     registrationData: AuthData;
     checkEmail: CheckEmail;
     confirmCode: string;

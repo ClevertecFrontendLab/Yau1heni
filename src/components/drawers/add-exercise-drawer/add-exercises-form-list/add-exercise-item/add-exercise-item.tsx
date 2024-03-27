@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import { Checkbox, Col, Form, FormListFieldData, Input, InputNumber, Row, Space } from 'antd';
+import { FC, Fragment } from 'react';
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
+import { Checkbox, Col, Form, FormListFieldData, Input, InputNumber, Row, Space } from 'antd';
 
 export const AddExerciseItem: FC<Props> = ({ field }) => (
-    <>
-        <Row justify={'space-between'}>
+    <Fragment>
+        <Row justify='space-between'>
             <Form.Item {...field} name={[field.name, 'name']}>
                 <Input
                     data-test-id={`modal-drawer-right-input-exercise${field.name}`}
-                    placeholder={'Упражнение'}
+                    placeholder='Упражнение'
                 />
             </Form.Item>
             <Form.Item {...field} valuePropName='checked' name={[field.name, 'checked']}>
@@ -16,7 +16,7 @@ export const AddExerciseItem: FC<Props> = ({ field }) => (
             </Form.Item>
         </Row>
 
-        <Space.Compact block>
+        <Space.Compact block={true}>
             <Col>
                 <div>Подходы, раз</div>
                 <Form.Item
@@ -48,7 +48,7 @@ export const AddExerciseItem: FC<Props> = ({ field }) => (
                 </Form.Item>
             </Col>
         </Space.Compact>
-    </>
+    </Fragment>
 );
 
 type Props = {

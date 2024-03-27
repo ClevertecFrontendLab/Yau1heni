@@ -1,11 +1,12 @@
-import { Button, Modal, Result } from 'antd';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { FC } from 'react';
 import { replace } from 'redux-first-history';
 import { Paths } from '@common-types/routes';
-import { maskStyle } from '../common-styles.ts';
-import { FC } from 'react';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { Button, Modal, Result } from 'antd';
 
-export const ErrorModal: FC<Props> = ({ isError, clearError }) => {
+import { maskStyle } from '../../common-styles.ts';
+
+export const ErrorServerModal: FC<Props> = ({ isError, clearError }) => {
     const dispatch = useAppDispatch();
 
     const okHandler = () => {
@@ -25,7 +26,7 @@ export const ErrorModal: FC<Props> = ({ isError, clearError }) => {
             open={isError}
             onOk={okHandler}
             onCancel={cancelHandler}
-            centered
+            centered={true}
             maskStyle={maskStyle}
             footer={null}
             data-test-id='modal-no-review'

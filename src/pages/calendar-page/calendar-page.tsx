@@ -1,16 +1,15 @@
-import { MainLayout } from '@components/layout';
-import './calendar-page.module.css';
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-
-import { getTrainingList, getTrainings, trainingActions, trainingSelectors } from '@redux/slices';
-import dayjs, { Dayjs } from 'dayjs';
-import { Calendar, CustomCalendarCell } from '@components/calendar';
-import { localeCalendar } from '@constants/locale-calendar';
-import { ErrorTrainingModal } from '@components/modals';
-import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import { CalendarMobile } from '@components/calendar';
+import { Calendar, CalendarMobile, CustomCalendarCell } from '@components/calendar';
 import { AddExercisesDrawer } from '@components/drawers';
+import { MainLayout } from '@components/layout';
+import { ErrorTrainingModal } from '@components/modals';
+import { localeCalendar } from '@constants/locale-calendar';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { getTrainingList, getTrainings, trainingActions, trainingSelectors } from '@redux/slices';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import dayjs, { Dayjs } from 'dayjs';
+
+import './calendar-page.module.css';
 
 const CalendarPage = () => {
     const dispatch = useAppDispatch();
@@ -34,6 +33,7 @@ const CalendarPage = () => {
     const [currentMonth, setCurrentMonth] = useState(dayjs().month());
     const disabledDate = (current: Dayjs) => {
         const isCurrentMonth = current.month() === currentMonth;
+
         return !isCurrentMonth;
     };
 
@@ -41,9 +41,9 @@ const CalendarPage = () => {
         setCurrentMonth(value.month());
     };
 
-    const dateFullCellRender = (date: Dayjs) => {
-        return <CustomCalendarCell date={date} allTrainings={trainings} />;
-    };
+    const dateFullCellRender = (date: Dayjs) => (
+        <CustomCalendarCell date={date} allTrainings={trainings} />
+    );
 
     return (
         <MainLayout isWithHeader={false} isWithFooter={false}>

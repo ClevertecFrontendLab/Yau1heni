@@ -1,13 +1,14 @@
-import { instance } from '../config/axios-config.ts';
 import {
-    CheckEmailPayload,
     AuthPayload,
-    LoginResponse,
-    EmailResponse,
-    ConfirmEmailPayload,
     ChangePasswordPayload,
     ChangePasswordResponse,
+    CheckEmailPayload,
+    ConfirmEmailPayload,
+    EmailResponse,
+    LoginResponse,
 } from '@common-types/auth';
+
+import { instance } from '../config/axios-config.ts';
 
 export const authServices = {
     login(data: AuthPayload) {

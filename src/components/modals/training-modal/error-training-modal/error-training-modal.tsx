@@ -1,9 +1,9 @@
-import { Button, Col, Modal, Row, Typography } from 'antd';
-import { maskStyle } from '@components/modals/common-styles.ts';
 import { FC } from 'react';
 import { CloseCircleTwoTone, CloseOutlined } from '@ant-design/icons';
-import { getTrainingList, getTrainings, trainingActions } from '@redux/slices';
+import { maskStyle } from '@components/modals/common-styles.ts';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks.ts';
+import { getTrainingList, getTrainings, trainingActions } from '@redux/slices';
+import { Button, Col, Modal, Row, Typography } from 'antd';
 
 export const ErrorTrainingModal: FC<Props> = ({ isErrorOpened, isErrorSaving, clearError }) => {
     const dispatch = useAppDispatch();
@@ -41,10 +41,10 @@ export const ErrorTrainingModal: FC<Props> = ({ isErrorOpened, isErrorSaving, cl
             width={384}
             footer={null}
             closable={false}
-            centered
+            centered={true}
             maskStyle={maskStyle}
         >
-            <Row align={'top'}>
+            <Row align='top'>
                 <Col span={3}>
                     <CloseCircleTwoTone style={{ fontSize: '24px' }} twoToneColor={colorIcon} />
                 </Col>
@@ -53,7 +53,7 @@ export const ErrorTrainingModal: FC<Props> = ({ isErrorOpened, isErrorSaving, cl
                         {textTitle}
                     </Typography.Title>
                     <Typography.Text
-                        type={'secondary'}
+                        type='secondary'
                         data-test-id='modal-error-user-training-subtitle'
                     >
                         {text}
@@ -67,7 +67,7 @@ export const ErrorTrainingModal: FC<Props> = ({ isErrorOpened, isErrorSaving, cl
                 />
             </Row>
 
-            <Row justify={'end'} style={{ marginTop: '16px' }}>
+            <Row justify='end' style={{ marginTop: '16px' }}>
                 <Button
                     type='primary'
                     onClick={retryRequestHandler}

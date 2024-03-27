@@ -1,18 +1,19 @@
+import { push, replace } from 'redux-first-history';
+import {
+    AuthData,
+    AuthInitialState,
+    ChangePasswordData,
+    CheckEmail,
+    EmailResponse,
+    Nullable,
+    StatusCode,
+} from '@common-types/auth';
+import { Paths } from '@common-types/routes';
+import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
+import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { authServices } from '@services/auth-services';
-import {
-    StatusCode,
-    AuthInitialState,
-    AuthData,
-    CheckEmail,
-    ChangePasswordData,
-    Nullable,
-} from '@common-types/auth';
-import { push, replace } from 'redux-first-history';
-import { Paths } from '@common-types/routes';
-import { createAppAsyncThunk } from '@hooks/typed-react-redux-hooks.ts';
 import { isAxiosError } from 'axios';
-import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
 
 const initialState: AuthInitialState = {
     isRememberMe: false,
@@ -100,7 +101,7 @@ export const registration = createAppAsyncThunk<void, AuthData>(
 export const retryRegistration = createAppAsyncThunk<void, void>(
     'auth/retryRegistration',
     async (_, thunkAPI) => {
-        const { dispatch, getState } = thunkAPI;
+        const { dispatch, rejectWithValue, getState } = thunkAPI;
         const data = getState().auth?.registrationData;
 
         try {
@@ -108,7 +109,7 @@ export const retryRegistration = createAppAsyncThunk<void, void>(
             if (data !== null) dispatch(registration(data));
         } catch (e) {
             if (isAxiosError(e)) {
-                console.log(e);
+                rejectWithValue(e);
             }
         }
     },
@@ -118,6 +119,7 @@ export const login = createAppAsyncThunk<void, AuthData>(
     'auth/login',
     async (data, { dispatch, getState }) => {
         const isRememberMe = getState().auth?.isRememberMe;
+
         try {
             if (data !== null) {
                 const res = await authServices.login({
@@ -125,9 +127,11 @@ export const login = createAppAsyncThunk<void, AuthData>(
                     password: data.password,
                 });
 
-                isRememberMe
-                    ? localStorage.setItem(LocalStorageKeys.ACCESS_TOKEN, res.data.accessToken)
-                    : dispatch(authActions.setAccessToken({ accessToken: res.data.accessToken }));
+                if (isRememberMe) {
+                    localStorage.setItem(LocalStorageKeys.ACCESS_TOKEN, res.data.accessToken);
+                } else {
+                    dispatch(authActions.setAccessToken({ accessToken: res.data.accessToken }));
+                }
 
                 dispatch(push(Paths.MAIN));
             }
@@ -169,7 +173,7 @@ export const checkEmail = createAppAsyncThunk<void, CheckEmail>(
 export const retryCheckEmail = createAppAsyncThunk<void, void>(
     'auth/retryRegistration',
     async (_, thunkAPI) => {
-        const { dispatch, getState } = thunkAPI;
+        const { dispatch, rejectWithValue, getState } = thunkAPI;
         const data = getState().auth.checkEmail;
 
         try {
@@ -179,24 +183,27 @@ export const retryCheckEmail = createAppAsyncThunk<void, void>(
             }
         } catch (e) {
             if (isAxiosError(e)) {
-                console.log(e);
+                rejectWithValue(e);
             }
         }
     },
 );
 
-export const confirmEmail = createAppAsyncThunk<void, string>(
+export const confirmEmail = createAppAsyncThunk<EmailResponse, string>(
     'auth/confirmEmail',
     async (code, { dispatch, getState, rejectWithValue }) => {
         const data = getState().auth.checkEmail;
 
         try {
             if (data !== null) {
-                await authServices.confirmEmail({ email: data.email, code });
+                const res = await authServices.confirmEmail({ email: data.email, code });
+
                 dispatch(push(Paths.CHANGE_PASSWORD, { from: data?.pathname }));
-            } else {
-                return rejectWithValue('error confirm email');
+
+                return res.data;
             }
+
+            return rejectWithValue('error confirm email');
         } catch (e) {
             return rejectWithValue('error confirm email');
         }
@@ -229,14 +236,14 @@ export const changePassword = createAppAsyncThunk<void, ChangePasswordData>(
 export const retryChangePassword = createAppAsyncThunk<void, void>(
     'auth/retryChangePassword',
     async (_, thunkAPI) => {
-        const { dispatch, getState } = thunkAPI;
+        const { dispatch, rejectWithValue, getState } = thunkAPI;
         const data = getState().auth.changePasswordData;
 
         try {
             dispatch(push(Paths.CHANGE_PASSWORD, { from: data?.pathname }));
             if (data !== null) dispatch(changePassword(data));
         } catch (e) {
-            console.log(e);
+            rejectWithValue(e);
         }
     },
 );

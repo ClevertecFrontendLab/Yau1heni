@@ -1,18 +1,16 @@
-import { Layout } from 'antd';
-import { SidebarDesktop, SidebarMobile } from '@components/sidebar';
-import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { FC, PropsWithChildren, useState } from 'react';
-import { LocalStorageKeys } from '@constants/local-storage-keys.ts';
-import { authActions, trainingActions, trainingSelectors } from '@redux/slices';
-import { navigateTo } from '@utils/navigate-to';
-import { Paths } from '@common-types/routes';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { Header } from '@components/header';
-import { TrapezoidButton } from '@components/trapezoid-button';
-import { Footer } from '@components/footer';
-import styles from './main-layout.module.css';
 import { Breadcrumbs } from '@components/breadcrumbs';
-import { ErrorModal } from '@components/modals';
+import { Footer } from '@components/footer';
+import { Header } from '@components/header';
+import { ErrorServerModal } from '@components/modals';
+import { Sidebar } from '@components/sidebar';
+import { TrapezoidButton } from '@components/trapezoid-button';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { trainingActions, trainingSelectors } from '@redux/slices';
+import { Layout } from 'antd';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+
+import styles from './main-layout.module.css';
 
 export const MainLayout: FC<Props> = (props) => {
     const { isWithHeader = true, isWithFooter = true, children } = props;
@@ -31,23 +29,9 @@ export const MainLayout: FC<Props> = (props) => {
         setCollapsed(!collapsed);
     };
 
-    const logoutHandler = () => {
-        localStorage.removeItem(LocalStorageKeys.ACCESS_TOKEN);
-        dispatch(authActions.setAccessToken({ accessToken: null }));
-        navigateTo({ dispatch, toPath: Paths.AUTH });
-    };
-
     return (
         <Layout>
-            {xs ? (
-                <SidebarMobile
-                    collapsed={!collapsed}
-                    toggleCollapsed={toggleCollapsed}
-                    logout={logoutHandler}
-                />
-            ) : (
-                <SidebarDesktop isCollapsed={collapsed} logout={logoutHandler} />
-            )}
+            <Sidebar collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
             <Layout>
                 <Breadcrumbs />
                 {isWithHeader && <Header />}
@@ -58,11 +42,11 @@ export const MainLayout: FC<Props> = (props) => {
                             <TrapezoidButton
                                 collapsed={collapsed}
                                 toggleCollapsed={toggleCollapsed}
-                                dataTestId={'sider-switch'}
+                                dataTestId='sider-switch'
                             />
                         )}
                         {children}
-                        <ErrorModal clearError={clearError} isError={isError} />
+                        <ErrorServerModal clearError={clearError} isError={isError} />
                     </Layout.Content>
                     {isWithFooter && (
                         <Layout.Footer>

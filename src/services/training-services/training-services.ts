@@ -1,10 +1,11 @@
-import { instance } from '../config/axios-config.ts';
 import {
     ChangeTrainingPayload,
     Training,
     TrainingList,
     TrainingPayload,
 } from '@common-types/training';
+
+import { instance } from '../config/axios-config.ts';
 
 export const trainingServices = {
     getTraining() {
@@ -15,6 +16,7 @@ export const trainingServices = {
     },
     editTraining(data: ChangeTrainingPayload) {
         const { trainingId, payload } = data;
+
         return instance.put<Training>(`training/${trainingId}`, payload);
     },
     getTrainingList() {
